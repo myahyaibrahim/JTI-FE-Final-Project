@@ -1,3 +1,8 @@
+# Cara menjalankan
+
+1. Install semua dependencies. jalankan command, npm install
+2. Untuk run website, npm start
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
