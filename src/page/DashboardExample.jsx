@@ -24,162 +24,141 @@ const DashboardExample = () => {
         <div className="content">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-lg-6">
-                <div className="card">
-                  <div className="card-header border-0">
-                    <div className="d-flex justify-content-between">
-                      <h3 className="card-title">Online Store Visitors</h3>
-                      <a href="javascript:void(0);">View Report</a>
+              <div className="col-md-3 col-sm-6 col-12">
+                <div className="info-box bg-info">
+                  <span className="info-box-icon"><i className="far fa-bookmark" /></span>
+                  <div className="info-box-content">
+                    <span className="info-box-text">Bookmarks</span>
+                    <span className="info-box-number">41,410</span>
+                    <div className="progress">
+                      <div className="progress-bar" style={{width: '70%'}} />
                     </div>
-                  </div>
-                  <div className="card-body">
-                    <div className="d-flex">
-                      <p className="d-flex flex-column">
-                        <span className="text-bold text-lg">820</span>
-                        <span>Visitors Over Time</span>
-                      </p>
-                      <p className="ml-auto d-flex flex-column text-right">
-                        <span className="text-success">
-                          <i className="fas fa-arrow-up" /> 12.5%
-                        </span>
-                        <span className="text-muted">Since last week</span>
-                      </p>
-                    </div>
-                    <div className="position-relative mb-4">
-                      <canvas id="visitors-chart" height={200} />
-                    </div>
-                    <div className="d-flex flex-row justify-content-end">
-                      <span className="mr-2">
-                        <i className="fas fa-square text-primary" /> This Week
-                      </span>
-                      <span>
-                        <i className="fas fa-square text-gray" /> Last Week
-                      </span>
-                    </div>
+                    <span className="progress-description">
+                      70% Increase in 30 Days
+                    </span>
                   </div>
                 </div>
+              </div>
+              <div className="col-md-3 col-sm-6 col-12">
+                <div className="info-box bg-info">
+                  <span className="info-box-icon"><i className="far fa-bookmark" /></span>
+                  <div className="info-box-content">
+                    <span className="info-box-text">Bookmarks</span>
+                    <span className="info-box-number">41,410</span>
+                    <div className="progress">
+                      <div className="progress-bar" style={{width: '70%'}} />
+                    </div>
+                    <span className="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3 col-sm-6 col-12">
+                <div className="info-box bg-info">
+                  <span className="info-box-icon"><i className="far fa-bookmark" /></span>
+                  <div className="info-box-content">
+                    <span className="info-box-text">Bookmarks</span>
+                    <span className="info-box-number">41,410</span>
+                    <div className="progress">
+                      <div className="progress-bar" style={{width: '70%'}} />
+                    </div>
+                    <span className="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3 col-sm-6 col-12">
+                <div className="info-box bg-info">
+                  <span className="info-box-icon"><i className="far fa-bookmark" /></span>
+                  <div className="info-box-content">
+                    <span className="info-box-text">Bookmarks</span>
+                    <span className="info-box-number">41,410</span>
+                    <div className="progress">
+                      <div className="progress-bar" style={{width: '25%'}} />
+                    </div>
+                    <span className="progress-description">
+                      25% Increase in 30 Days
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+            </div>            
+            <div className="row">   
+              <div className="col-md-12">
                 <div className="card">
-                  <div className="card-header border-0">
-                    <h3 className="card-title">Products</h3>
+                  <div className="card-header">
+                    <h3 className="card-title">Simple Full Width Table</h3>
                     <div className="card-tools">
-                      <a href="#" className="btn btn-tool btn-sm">
-                        <i className="fas fa-download" />
-                      </a>
-                      <a href="#" className="btn btn-tool btn-sm">
-                        <i className="fas fa-bars" />
-                      </a>
+                      <ul className="pagination pagination-sm float-right">
+                        <li className="page-item"><a className="page-link" href="#">«</a></li>
+                        <li className="page-item"><a className="page-link" href="#">1</a></li>
+                        <li className="page-item"><a className="page-link" href="#">2</a></li>
+                        <li className="page-item"><a className="page-link" href="#">3</a></li>
+                        <li className="page-item"><a className="page-link" href="#">»</a></li>
+                      </ul>
                     </div>
                   </div>
-                  <div className="card-body table-responsive p-0">
-                    <table className="table table-striped table-valign-middle">
+                  <div className="card-body p-0">
+                    <table className="table">
                       <thead>
                         <tr>
-                          <th>Product</th>
-                          <th>Price</th>
-                          <th>Sales</th>
-                          <th>More</th>
+                          <th style={{width: 10}}>#</th>
+                          <th>Task</th>
+                          <th>Progress</th>
+                          <th style={{width: 40}}>Label</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
+                          <td>1.</td>
+                          <td>Update software</td>
                           <td>
-                            <img
-                              src="dist/img/default-150x150.png"
-                              alt="Product 1"
-                              className="img-circle img-size-32 mr-2"
-                            />
-                            Some Product
+                            <div className="progress progress-xs">
+                              <div className="progress-bar progress-bar-danger" style={{width: '55%'}} />
+                            </div>
                           </td>
-                          <td>$13 USD</td>
-                          <td>
-                            <small className="text-success mr-1">
-                              <i className="fas fa-arrow-up" />
-                              12%
-                            </small>
-                            12,000 Sold
-                          </td>
-                          <td>
-                            <a href="#" className="text-muted">
-                              <i className="fas fa-search" />
-                            </a>
-                          </td>
+                          <td><span className="badge bg-danger">55%</span></td>
                         </tr>
                         <tr>
+                          <td>2.</td>
+                          <td>Clean database</td>
                           <td>
-                            <img
-                              src="dist/img/default-150x150.png"
-                              alt="Product 1"
-                              className="img-circle img-size-32 mr-2"
-                            />
-                            Another Product
+                            <div className="progress progress-xs">
+                              <div className="progress-bar bg-warning" style={{width: '70%'}} />
+                            </div>
                           </td>
-                          <td>$29 USD</td>
-                          <td>
-                            <small className="text-warning mr-1">
-                              <i className="fas fa-arrow-down" />
-                              0.5%
-                            </small>
-                            123,234 Sold
-                          </td>
-                          <td>
-                            <a href="#" className="text-muted">
-                              <i className="fas fa-search" />
-                            </a>
-                          </td>
+                          <td><span className="badge bg-warning">70%</span></td>
                         </tr>
                         <tr>
+                          <td>3.</td>
+                          <td>Cron job running</td>
                           <td>
-                            <img
-                              src="dist/img/default-150x150.png"
-                              alt="Product 1"
-                              className="img-circle img-size-32 mr-2"
-                            />
-                            Amazing Product
+                            <div className="progress progress-xs progress-striped active">
+                              <div className="progress-bar bg-primary" style={{width: '30%'}} />
+                            </div>
                           </td>
-                          <td>$1,230 USD</td>
-                          <td>
-                            <small className="text-danger mr-1">
-                              <i className="fas fa-arrow-down" />
-                              3%
-                            </small>
-                            198 Sold
-                          </td>
-                          <td>
-                            <a href="#" className="text-muted">
-                              <i className="fas fa-search" />
-                            </a>
-                          </td>
+                          <td><span className="badge bg-primary">30%</span></td>
                         </tr>
                         <tr>
+                          <td>4.</td>
+                          <td>Fix and squish bugs</td>
                           <td>
-                            <img
-                              src="dist/img/default-150x150.png"
-                              alt="Product 1"
-                              className="img-circle img-size-32 mr-2"
-                            />
-                            Perfect Item
-                            <span className="badge bg-danger">NEW</span>
+                            <div className="progress progress-xs progress-striped active">
+                              <div className="progress-bar bg-success" style={{width: '90%'}} />
+                            </div>
                           </td>
-                          <td>$199 USD</td>
-                          <td>
-                            <small className="text-success mr-1">
-                              <i className="fas fa-arrow-up" />
-                              63%
-                            </small>
-                            87 Sold
-                          </td>
-                          <td>
-                            <a href="#" className="text-muted">
-                              <i className="fas fa-search" />
-                            </a>
-                          </td>
+                          <td><span className="badge bg-success">90%</span></td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-6">
+
+              {/* <div className="col-lg-6">
                 <div className="card">
                   <div className="card-header border-0">
                     <div className="d-flex justify-content-between">
@@ -264,7 +243,8 @@ const DashboardExample = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
+
             </div>
           </div>
         </div>
