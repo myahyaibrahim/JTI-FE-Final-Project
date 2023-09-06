@@ -1,13 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StatusContext } from "../StatusContext";
+import axios from "axios";
+import { api } from "../Configuration";
+import { Alert } from "reactstrap";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [title] = useState("Login");
+  const navigate = useNavigate();
   const valueContext = useContext(StatusContext);
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
-    rememberMe: false,
+  });
+
+  const [status, setStatus] = useState({
+    display: "none",
+    type: "",
+    message: "",
   });
 
   useEffect(() => {
@@ -39,12 +49,40 @@ export default function Login() {
 
     console.log(loginData);
 
-    localStorage.setItem("email", loginData["email"]);
+    axios
+      .post(api + "/login", loginData, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((res) => {
+        if (res.request.status === 200) {
+          // Enable navbar
+          valueContext.setStatusValue({
+            ...valueContext.statusValue,
+            navDisplay: "block",
+          });
+          // Upload username to session storage
+          sessionStorage.setItem("uuid", res.data.uuid);
+          sessionStorage.setItem("name", res.data.name);
+          sessionStorage.setItem("email", res.data.email);
+          sessionStorage.setItem("username", res.data.username);
+
+          navigate("/", { replace: true });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setStatus({
+          display: "block",
+          type: "danger",
+          message: err.response.data.msg,
+        });
+      });
+
     // Enable Navigation bar
-    valueContext.setStatusValue({
-      ...valueContext.statusValue,
-      navDisplay: "block",
-    });
+    // valueContext.setStatusValue({
+    //   ...valueContext.statusValue,
+    //   navDisplay: "block",
+    // });
   };
 
   return (
@@ -60,6 +98,9 @@ export default function Login() {
             <p className="login-box-msg">
               Sign in to start monitoring your water
             </p>
+            <Alert color={status.type} style={{ display: status.display }}>
+              {status.message}
+            </Alert>
             <form action="../../index3.html" method="post">
               {/* email form */}
               <div className="input-group mb-3">
@@ -92,7 +133,7 @@ export default function Login() {
                 </div>
               </div>
               {/* Remember me & Sign in Button section */}
-              <div className="row">
+              {/* <div className="row">
                 <div className="col-8">
                   <div className="icheck-primary">
                     <input type="checkbox" id="remember" />
@@ -108,13 +149,22 @@ export default function Login() {
                     Sign In
                   </button>
                 </div>
-              </div>
+              </div> */}
             </form>
-            <p className="mb-1">
+            <div className="input-group mb-3">
+              <button
+                type="submit"
+                className="btn btn-primary btn-block"
+                onClick={onSignInButtonClicked}
+              >
+                Sign in
+              </button>
+            </div>
+            {/* <p className="mb-1">
               <a href="forgot-password.html">I forgot my password</a>
-            </p>
+            </p> */}
             <p className="mb-0">
-              <a href="register.html" className="text-center">
+              <a href="/register" className="text-center">
                 Register a new account
               </a>
             </p>

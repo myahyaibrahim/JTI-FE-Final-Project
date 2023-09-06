@@ -1,6 +1,45 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { StatusContext } from "../StatusContext";
 
 function AddDevice() {
+  const [title] = useState("Add Device");
+  const valueContext = useContext(StatusContext);
+  const [deviceData, setDeviceData] = useState({
+    deviceName: "",
+    deviceSerialNumber: "",
+    description: "",
+    updateInterval: 30,
+    status: true,
+    waterUsage: 0,
+    waterLimit: 0,
+    waterUsageTimer: 0,
+    valveStatus: true,
+  });
+
+  useEffect(() => {
+    // Set page title
+    document.title = title;
+  }, []);
+
+  const handleChange = (e) => {
+    setDeviceData({
+      ...deviceData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleChangeNumber = (e) => {
+    setDeviceData({
+      ...deviceData,
+      [e.target.name]: +e.target.value,
+    });
+  };
+
+  const onAddClicked = (event) => {
+    event.preventDefault();
+    console.log(deviceData);
+  };
+
   return (
     <div className="content-wrapper">
       <section className="content-header">
@@ -26,7 +65,7 @@ function AddDevice() {
             <div className="col-md-12">
               <div className="card card-primary">
                 <div className="card-header">
-                  <h3 className="card-title">Device General Information</h3>
+                  <h3 className="card-title">General Information</h3>
                 </div>
                 <form>
                   <div className="card-body">
@@ -38,6 +77,7 @@ function AddDevice() {
                         id="deviceName"
                         placeholder="Device name"
                         name="deviceName"
+                        onChange={handleChange}
                       />
                     </div>
 
@@ -45,13 +85,16 @@ function AddDevice() {
                       <div className="col-md-6">
                         <div className="form-group">
                           <div>
-                            <label htmlFor="idDevice">ID Device</label>
+                            <label htmlFor="deviceSerialNumber">
+                              Device serial number
+                            </label>
                             <input
                               type="text"
                               className="form-control"
-                              id="idDevice"
-                              placeholder="ID Device"
-                              name="idDevice"
+                              id="deviceSerialNumber"
+                              placeholder="Enter device serial number"
+                              name="deviceSerialNumber"
+                              onChange={handleChange}
                             />
                           </div>
                         </div>
@@ -63,12 +106,19 @@ function AddDevice() {
                             <label htmlFor="updateInterval">
                               Set update interval
                             </label>
-                            <select className="form-control">
-                              <option>option 1</option>
-                              <option>option 2</option>
-                              <option>option 3</option>
-                              <option>option 4</option>
-                              <option>option 5</option>
+                            <select
+                              className="form-control"
+                              name="updateInterval"
+                              onChange={handleChangeNumber}
+                            >
+                              <option value={30}>30 minutes</option>
+                              <option value={60}>1 hour</option>
+                              <option value={180}>3 hours</option>
+                              <option value={360}>6 hours</option>
+                              <option value={720}>12 hours</option>
+                              <option value={1440}>24 hours</option>
+                              <option value={4320}>3 days</option>
+                              <option value={10080}>1 week</option>
                             </select>
                           </div>
                         </div>
@@ -84,8 +134,61 @@ function AddDevice() {
                         rows={3}
                         id="deviceDescription"
                         placeholder="Device description"
-                        name="deviceDescription"
+                        name="description"
+                        onChange={handleChange}
                       />
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          {/* Water usage section */}
+          <div className="row">
+            <div className="col-md-12">
+              <div className="card card-primary">
+                <div className="card-header">
+                  <h3 className="card-title">Water Usage Monitoring</h3>
+                </div>
+                <form>
+                  <div className="card-body">
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <div>
+                            <label htmlFor="waterAllocation">
+                              Water allocation
+                            </label>
+                            <input
+                              type="number"
+                              className="form-control"
+                              id="waterAllocation"
+                              placeholder="Water allocation per month"
+                              name="waterLimit"
+                              onChange={handleChangeNumber}
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <div>
+                            <label htmlFor="waterUsageTimer">
+                              Water usage timer
+                            </label>
+                            <input
+                              type="number"
+                              className="form-control"
+                              id="waterUsageTimer"
+                              placeholder="Water usage timer in minutes"
+                              name="waterUsageTimer"
+                              onChange={handleChangeNumber}
+                            />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </form>
@@ -104,7 +207,11 @@ function AddDevice() {
             justifyContent: "right",
           }}
         >
-          <button type="submit" className="btn btn-primary">
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={onAddClicked}
+          >
             Add device
           </button>
         </div>

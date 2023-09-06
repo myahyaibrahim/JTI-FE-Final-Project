@@ -9,14 +9,13 @@ function MyDevices() {
         <div className="container-fluid">
           <div className="row mb-2">
             <div className="col-sm-6">
-              <h1>Parameter</h1>
+              <h1>My Devices</h1>
             </div>
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
-                  <a href="/">Beranda</a>
+                  <a href="/MyDevice">My Devices</a>
                 </li>
-                <li className="breadcrumb-item active">Parameter</li>
               </ol>
             </div>
           </div>
@@ -30,7 +29,7 @@ function MyDevices() {
             <div className="col-md-12">
               <div className="card">
                 <div className="card-header">
-                  <h3 className="card-title">Daftar Parameter</h3>
+                  <h3 className="card-title">Device List</h3>
                 </div>
                 <div className="card-body p-0">
                   <table className="table">

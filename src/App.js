@@ -11,10 +11,11 @@ import DashboardExample from "./page/DashboardExample";
 import Login from "./page/Login";
 import AddDevice from "./page/AddDevice";
 import MyDevices from "./page/MyDevices";
+import Register from "./page/Register";
 
 function App() {
   const [statusValue, setStatusValue] = useState({
-    navDisplay: "block",
+    navDisplay: "none",
   });
   const valueContext = { statusValue, setStatusValue };
 
@@ -33,6 +34,7 @@ function App() {
           <Routes>
             <Route path="/" element={<DashboardExample />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/AddDevice" element={<AddDevice />} />
             <Route path="/MyDevices" element={<MyDevices />} />
           </Routes>

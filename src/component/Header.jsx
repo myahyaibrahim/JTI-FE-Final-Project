@@ -16,9 +16,10 @@ const Header = () => {
             </a>
           </li>
           <li className="nav-item d-none d-sm-inline-block">
-            <a href="index3.html" className="nav-link">
+            <div className="nav-link">Home</div>
+            {/* <a href="index3.html" className="nav-link">
               Home
-            </a>
+            </a> */}
           </li>
           <li className="nav-item d-none d-sm-inline-block">
             <a href="#" className="nav-link">
@@ -26,41 +27,9 @@ const Header = () => {
             </a>
           </li>
         </ul>
+        {/* Right side header */}
         <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <a
-              className="nav-link"
-              data-widget="navbar-search"
-              href="#"
-              role="button"
-            >
-              <i className="fas fa-search" />
-            </a>
-            <div className="navbar-search-block">
-              <form className="form-inline">
-                <div className="input-group input-group-sm">
-                  <input
-                    className="form-control form-control-navbar"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                  <div className="input-group-append">
-                    <button className="btn btn-navbar" type="submit">
-                      <i className="fas fa-search" />
-                    </button>
-                    <button
-                      className="btn btn-navbar"
-                      type="button"
-                      data-widget="navbar-search"
-                    >
-                      <i className="fas fa-times" />
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </li>
+          {/* Messages */}
           <li className="nav-item dropdown">
             <a className="nav-link" data-toggle="dropdown" href="#">
               <i className="far fa-comments" />
@@ -138,6 +107,7 @@ const Header = () => {
               </a>
             </div>
           </li>
+          {/* Notifications */}
           <li className="nav-item dropdown">
             <a className="nav-link" data-toggle="dropdown" href="#">
               <i className="far fa-bell" />
@@ -168,6 +138,7 @@ const Header = () => {
               </a>
             </div>
           </li>
+          {/* Full screen toggle */}
           <li className="nav-item">
             <a
               className="nav-link"
@@ -176,17 +147,6 @@ const Header = () => {
               role="button"
             >
               <i className="fas fa-expand-arrows-alt" />
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className="nav-link"
-              data-widget="control-sidebar"
-              data-slide="true"
-              href="#"
-              role="button"
-            >
-              <i className="fas fa-th-large" />
             </a>
           </li>
         </ul>
