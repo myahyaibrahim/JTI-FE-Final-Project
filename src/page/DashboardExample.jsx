@@ -1,6 +1,12 @@
-import React from "react";
+import React, {useEffect} from "react";
+import axios from "axios";
 
 const DashboardExample = () => {
+useEffect(()=>{
+    axios.get('http://localhost:4000/users')
+    .then(res=> console.log(res))
+    .catch(err => console.log(err));
+}, [])
   return (
     <div>
       <div className="content-wrapper">
@@ -41,7 +47,7 @@ const DashboardExample = () => {
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
-                  <span className="info-box-icon"><i className="far fa-bookmark" /></span>
+                  <span className="info-box-icon"><i className="fa fa-tint" /></span>
                   <div className="info-box-content">
                     <span className="info-box-text">Bookmarks</span>
                     <span className="info-box-number">41,410</span>
