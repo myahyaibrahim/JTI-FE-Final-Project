@@ -12,6 +12,7 @@ import Login from "./page/Login";
 import AddDevice from "./page/AddDevice";
 import MyDevices from "./page/MyDevices";
 import Register from "./page/Register";
+import DetailDevice from "./page/DetailDevice";
 
 function App() {
   const [statusValue, setStatusValue] = useState({
@@ -37,6 +38,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/AddDevice" element={<AddDevice />} />
             <Route path="/MyDevices" element={<MyDevices />} />
+            <Route path="/DetailDevice" element={<DetailDevice />} />
           </Routes>
 
           <div

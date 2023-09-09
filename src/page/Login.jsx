@@ -61,6 +61,7 @@ export default function Login() {
             navDisplay: "block",
           });
           // Upload username to session storage
+          sessionStorage.setItem("id", res.data.id);
           sessionStorage.setItem("uuid", res.data.uuid);
           sessionStorage.setItem("name", res.data.name);
           sessionStorage.setItem("email", res.data.email);
