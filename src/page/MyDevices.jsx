@@ -69,6 +69,7 @@ function MyDevices() {
           message: err.response.data.msg,
         });
       });
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
   return (
@@ -152,7 +153,7 @@ function MyDevices() {
                               verticalAlign: "middle",
                             }}
                           >
-                            {curr.valveStatus === true ? "Active" : "Inactive"}
+                            {curr.status === true ? "Active" : "Inactive"}
                           </td>
                           {/* Valve status */}
                           <td
@@ -161,7 +162,7 @@ function MyDevices() {
                               verticalAlign: "middle",
                             }}
                           >
-                            {curr.status === true ? "Open" : "Closed"}
+                            {curr.valveStatus === true ? "Open" : "Closed"}
                           </td>
                           {/* Action column */}
                           <td>
