@@ -11,6 +11,7 @@ import Login from "./page/Login";
 import AddDevice from "./page/AddDevice";
 import MyDevices from "./page/MyDevices";
 import Register from "./page/Register";
+import DetailDevice from "./page/DetailDevice";
 import EditDevice from "./page/EditDevice";
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/AddDevice" element={<AddDevice />} />
             <Route path="/MyDevices" element={<MyDevices />} />
+            <Route path="/DetailDevice" element={<DetailDevice />} />
             <Route path="/EditDevice/:uuid" element={<EditDevice />} />
           </Routes>
 

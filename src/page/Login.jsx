@@ -60,6 +60,7 @@ export default function Login() {
             navDisplay: "block",
           });
           // Upload username to session storage
+          localStorage.setItem("id", res.data.id);
           localStorage.setItem("uuid", res.data.uuid);
           localStorage.setItem("name", res.data.name);
           localStorage.setItem("email", res.data.email);

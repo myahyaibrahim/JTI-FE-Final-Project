@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { api } from "../Configuration";
+import { Link } from "react-router-dom";
 
 const DashboardExample = () => {
+  const userLogin = sessionStorage.getItem("id");
+  const [data, setData] = useState([])
+  useEffect(()=>{
+    axios.get(api + "/monitor/" + userLogin)
+    .then(res => setData(res.data))
+    .catch(err => console.log(err));
+  },[])
+
+//  console.log(userLogin)
+
   return (
     <div>
       <div className="content-wrapper">
@@ -8,7 +21,7 @@ const DashboardExample = () => {
           <div className="container-fluid">
             <div className="row mb-2">
               <div className="col-sm-6">
-                <h1 className="m-0">Dashboard v3</h1>
+                <h1 className="m-0">Dashboard</h1>
               </div>
               <div className="col-sm-6">
                 <ol className="breadcrumb float-sm-right">
@@ -90,7 +103,7 @@ const DashboardExample = () => {
               <div className="col-md-12">
                 <div className="card">
                   <div className="card-header">
-                    <h3 className="card-title">Simple Full Width Table</h3>
+                    <h3 className="card-title">Devices</h3>
                     <div className="card-tools">
                       <ul className="pagination pagination-sm float-right">
                         <li className="page-item"><a className="page-link" href="#">«</a></li>
@@ -105,13 +118,52 @@ const DashboardExample = () => {
                     <table className="table">
                       <thead>
                         <tr>
-                          <th style={{width: 10}}>#</th>
-                          <th>Task</th>
-                          <th>Progress</th>
-                          <th style={{width: 40}}>Label</th>
+                          <th>#</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                          <th>valve</th>
+                          <th>Status</th>
+                          <th></th>
                         </tr>
                       </thead>
                       <tbody>
+                        {
+                          data.map((monitoring, index) => {
+                            
+                                              
+                            return <tr key ={index}>
+                              <td>{index + 1}</td>
+                              <td>{monitoring.deviceName}</td>
+                              <td>{monitoring.description}</td>
+                              <td>{monitoring.valveStatus}</td>
+                              <td>
+                              {monitoring.status === true &&
+                              <button className="btn btn-success btn-sm" disabled>
+                                  Active
+                              </button>
+                              }
+                              {monitoring.status === false &&
+                              <button className="btn btn-danger btn-sm" disabled>
+                                  Off
+                              </button>
+                              }
+                              </td>
+
+                              <td>
+                              <Link to="/DetailDevice"
+                                state={monitoring}                                
+                              >
+                                <button className="btn btn-primary btn-block">
+                                  Detail
+                                </button>
+                              </Link>
+                              </td>
+                            </tr>
+                            
+                          })
+                        }
+
+{/* 
                         <tr>
                           <td>1.</td>
                           <td>Update software</td>
@@ -152,99 +204,12 @@ const DashboardExample = () => {
                           </td>
                           <td><span className="badge bg-success">90%</span></td>
                         </tr>
+                         */}
                       </tbody>
                     </table>
                   </div>
                 </div>
               </div>
-
-              {/* <div className="col-lg-6">
-                <div className="card">
-                  <div className="card-header border-0">
-                    <div className="d-flex justify-content-between">
-                      <h3 className="card-title">Sales</h3>
-                      <a href="javascript:void(0);">View Report</a>
-                    </div>
-                  </div>
-                  <div className="card-body">
-                    <div className="d-flex">
-                      <p className="d-flex flex-column">
-                        <span className="text-bold text-lg">$18,230.00</span>
-                        <span>Sales Over Time</span>
-                      </p>
-                      <p className="ml-auto d-flex flex-column text-right">
-                        <span className="text-success">
-                          <i className="fas fa-arrow-up" /> 33.1%
-                        </span>
-                        <span className="text-muted">Since last month</span>
-                      </p>
-                    </div>
-                    <div className="position-relative mb-4">
-                      <canvas id="sales-chart" height={200} />
-                    </div>
-                    <div className="d-flex flex-row justify-content-end">
-                      <span className="mr-2">
-                        <i className="fas fa-square text-primary" /> This year
-                      </span>
-                      <span>
-                        <i className="fas fa-square text-gray" /> Last year
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-header border-0">
-                    <h3 className="card-title">Online Store Overview</h3>
-                    <div className="card-tools">
-                      <a href="#" className="btn btn-sm btn-tool">
-                        <i className="fas fa-download" />
-                      </a>
-                      <a href="#" className="btn btn-sm btn-tool">
-                        <i className="fas fa-bars" />
-                      </a>
-                    </div>
-                  </div>
-                  <div className="card-body">
-                    <div className="d-flex justify-content-between align-items-center border-bottom mb-3">
-                      <p className="text-success text-xl">
-                        <i className="ion ion-ios-refresh-empty" />
-                      </p>
-                      <p className="d-flex flex-column text-right">
-                        <span className="font-weight-bold">
-                          <i className="ion ion-android-arrow-up text-success" />{" "}
-                          12%
-                        </span>
-                        <span className="text-muted">CONVERSION RATE</span>
-                      </p>
-                    </div>
-                    <div className="d-flex justify-content-between align-items-center border-bottom mb-3">
-                      <p className="text-warning text-xl">
-                        <i className="ion ion-ios-cart-outline" />
-                      </p>
-                      <p className="d-flex flex-column text-right">
-                        <span className="font-weight-bold">
-                          <i className="ion ion-android-arrow-up text-warning" />{" "}
-                          0.8%
-                        </span>
-                        <span className="text-muted">SALES RATE</span>
-                      </p>
-                    </div>
-                    <div className="d-flex justify-content-between align-items-center mb-0">
-                      <p className="text-danger text-xl">
-                        <i className="ion ion-ios-people-outline" />
-                      </p>
-                      <p className="d-flex flex-column text-right">
-                        <span className="font-weight-bold">
-                          <i className="ion ion-android-arrow-down text-danger" />{" "}
-                          1%
-                        </span>
-                        <span className="text-muted">REGISTRATION RATE</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
-
             </div>
           </div>
         </div>
