@@ -1,13 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
-import { StatusContext } from "../StatusContext";
 import axios from "axios";
-import { api } from "../Configuration";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Alert } from "reactstrap";
+import { api } from "../Configuration";
 
-function AddDevice() {
+function EditDevice() {
   const [title] = useState("Add Device");
 
-  // const valueContext = useContext(StatusContext);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const params = useParams();
 
   const [deviceData, setDeviceData] = useState({
     deviceName: "",
@@ -28,6 +30,28 @@ function AddDevice() {
   });
 
   useEffect(() => {
+    console.log("UUID Device");
+    console.log(params);
+    // Fetch device informatiom/configuration from database
+    axios
+      .get(api + "/monitorConfiguration/" + params.uuid, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setDeviceData({
+          ...deviceData,
+          deviceName: res.data.deviceName,
+          description: res.data.description,
+          deviceSerialNumber: res.data.deviceSerialNumber,
+          updateInterval: res.data.updateInterval,
+          status: res.data.status,
+          waterLimit: res.data.waterLimit,
+          waterUsageTimer: res.data.waterUsageTimer,
+          valveStatus: res.data.valveStatus,
+          waterTolerance: res.data.waterTolerance,
+        });
+      });
+
     // Set page title
     document.title = title;
   }, []);
@@ -46,24 +70,31 @@ function AddDevice() {
     });
   };
 
-  const onAddClicked = (event) => {
+  const handleChangeCheckbox = (e, currentStatus) => {
+    setDeviceData({
+      ...deviceData,
+      [e.target.name]: !currentStatus,
+    });
+  };
+
+  console.log(deviceData);
+
+  const onSaveButtonClicked = (event) => {
     event.preventDefault();
     console.log(deviceData);
 
     axios
-      .post(api + "/monitor", deviceData, {
+      .patch(api + "/monitor/" + params.uuid, deviceData, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       })
       .then((res) => {
-        if (res.request.status === 201) {
-          console.log(res);
-          setStatus({
-            display: "block",
-            type: "success",
-            message: res.data.msg,
-          });
-        }
+        console.log(res);
+        setStatus({
+          display: "block",
+          type: "success",
+          message: res.data.msg,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -83,12 +114,12 @@ function AddDevice() {
         <div className="container-fluid">
           <div className="row mb-2">
             <div className="col-sm-6">
-              <h1>Add New Device</h1>
+              <h1>Edit Device</h1>
             </div>
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
-                  <a href="/AddDevice">Add New Device</a>
+                  <a href={"/EditDevice/" + params.uuid}>Edit Device</a>
                 </li>
               </ol>
             </div>
@@ -122,6 +153,7 @@ function AddDevice() {
                         placeholder="Device name"
                         name="deviceName"
                         onChange={handleChange}
+                        value={deviceData.deviceName}
                       />
                     </div>
 
@@ -139,6 +171,7 @@ function AddDevice() {
                               placeholder="Enter device serial number"
                               name="deviceSerialNumber"
                               onChange={handleChange}
+                              value={deviceData.deviceSerialNumber}
                             />
                           </div>
                         </div>
@@ -154,6 +187,7 @@ function AddDevice() {
                               className="form-control"
                               name="updateInterval"
                               onChange={handleChangeNumber}
+                              value={deviceData.updateInterval}
                             >
                               <option value={30}>30 minutes</option>
                               <option value={60}>1 hour</option>
@@ -180,7 +214,66 @@ function AddDevice() {
                         placeholder="Device description"
                         name="description"
                         onChange={handleChange}
+                        value={deviceData.description}
                       />
+                    </div>
+
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Turn device on/off</label>
+                          <div className="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input
+                              type="checkbox"
+                              className="custom-control-input"
+                              id="status"
+                              checked={deviceData.status}
+                              name="status"
+                              onChange={(event) =>
+                                handleChangeCheckbox(event, deviceData.status)
+                              }
+                            />
+                            <label
+                              className="custom-control-label"
+                              htmlFor="status"
+                              style={{ fontWeight: "normal" }}
+                            >
+                              {deviceData.status === true
+                                ? "Active (On)"
+                                : "Inactive (Off)"}
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Open/close valve</label>
+                          <div className="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input
+                              type="checkbox"
+                              className="custom-control-input"
+                              id="valveStatus"
+                              checked={deviceData.valveStatus}
+                              name="valveStatus"
+                              onChange={(event) =>
+                                handleChangeCheckbox(
+                                  event,
+                                  deviceData.valveStatus
+                                )
+                              }
+                            />
+                            <label
+                              className="custom-control-label"
+                              htmlFor="valveStatus"
+                              style={{ fontWeight: "normal" }}
+                            >
+                              {deviceData.valveStatus === true
+                                ? "Open"
+                                : "Close"}
+                            </label>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </form>
@@ -213,6 +306,7 @@ function AddDevice() {
                               placeholder="Water allocation per month"
                               name="waterLimit"
                               onChange={handleChangeNumber}
+                              value={deviceData.waterLimit}
                             />
                           </div>
                         </div>
@@ -231,6 +325,7 @@ function AddDevice() {
                               placeholder="Water usage timer in minutes"
                               name="waterUsageTimer"
                               onChange={handleChangeNumber}
+                              value={deviceData.waterUsageTimer}
                             />
                           </div>
                         </div>
@@ -246,6 +341,7 @@ function AddDevice() {
                           className="form-control"
                           name="waterTolerance"
                           onChange={handleChange}
+                          value={deviceData.waterTolerance}
                         >
                           <option value={"Drinkable water"}>
                             Drinkable water
@@ -277,10 +373,10 @@ function AddDevice() {
           <button
             type="submit"
             className="btn btn-primary"
-            onClick={onAddClicked}
+            onClick={onSaveButtonClicked}
             style={{ marginBottom: "10px" }}
           >
-            Add device
+            Save changes
           </button>
         </div>
       </section>
@@ -288,4 +384,4 @@ function AddDevice() {
   );
 }
 
-export default AddDevice;
+export default EditDevice;
