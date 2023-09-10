@@ -4,15 +4,16 @@ import { api } from "../Configuration";
 import { Link } from "react-router-dom";
 
 const DashboardExample = () => {
-  const userLogin = sessionStorage.getItem("id");
-  const [data, setData] = useState([])
-  useEffect(()=>{
-    axios.get(api + "/monitor/" + userLogin)
-    .then(res => setData(res.data))
-    .catch(err => console.log(err));
-  },[])
+  const userLogin = localStorage.getItem("id");
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get(api + "/monitor/" + userLogin)
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
-//  console.log(userLogin)
+  //  console.log(userLogin)
 
   return (
     <div>
@@ -39,12 +40,14 @@ const DashboardExample = () => {
             <div className="row">
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
-                  <span className="info-box-icon"><i className="far fa-bookmark" /></span>
+                  <span className="info-box-icon">
+                    <i className="far fa-bookmark" />
+                  </span>
                   <div className="info-box-content">
                     <span className="info-box-text">Bookmarks</span>
                     <span className="info-box-number">41,410</span>
                     <div className="progress">
-                      <div className="progress-bar" style={{width: '70%'}} />
+                      <div className="progress-bar" style={{ width: "70%" }} />
                     </div>
                     <span className="progress-description">
                       70% Increase in 30 Days
@@ -54,12 +57,14 @@ const DashboardExample = () => {
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
-                  <span className="info-box-icon"><i className="far fa-bookmark" /></span>
+                  <span className="info-box-icon">
+                    <i className="far fa-bookmark" />
+                  </span>
                   <div className="info-box-content">
                     <span className="info-box-text">Bookmarks</span>
                     <span className="info-box-number">41,410</span>
                     <div className="progress">
-                      <div className="progress-bar" style={{width: '70%'}} />
+                      <div className="progress-bar" style={{ width: "70%" }} />
                     </div>
                     <span className="progress-description">
                       70% Increase in 30 Days
@@ -69,12 +74,14 @@ const DashboardExample = () => {
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
-                  <span className="info-box-icon"><i className="far fa-bookmark" /></span>
+                  <span className="info-box-icon">
+                    <i className="far fa-bookmark" />
+                  </span>
                   <div className="info-box-content">
                     <span className="info-box-text">Bookmarks</span>
                     <span className="info-box-number">41,410</span>
                     <div className="progress">
-                      <div className="progress-bar" style={{width: '70%'}} />
+                      <div className="progress-bar" style={{ width: "70%" }} />
                     </div>
                     <span className="progress-description">
                       70% Increase in 30 Days
@@ -84,12 +91,14 @@ const DashboardExample = () => {
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
-                  <span className="info-box-icon"><i className="far fa-bookmark" /></span>
+                  <span className="info-box-icon">
+                    <i className="far fa-bookmark" />
+                  </span>
                   <div className="info-box-content">
                     <span className="info-box-text">Bookmarks</span>
                     <span className="info-box-number">41,410</span>
                     <div className="progress">
-                      <div className="progress-bar" style={{width: '25%'}} />
+                      <div className="progress-bar" style={{ width: "25%" }} />
                     </div>
                     <span className="progress-description">
                       25% Increase in 30 Days
@@ -97,20 +106,39 @@ const DashboardExample = () => {
                   </div>
                 </div>
               </div>
-
-            </div>            
-            <div className="row">   
+            </div>
+            <div className="row">
               <div className="col-md-12">
                 <div className="card">
                   <div className="card-header">
                     <h3 className="card-title">Devices</h3>
                     <div className="card-tools">
                       <ul className="pagination pagination-sm float-right">
-                        <li className="page-item"><a className="page-link" href="#">«</a></li>
-                        <li className="page-item"><a className="page-link" href="#">1</a></li>
-                        <li className="page-item"><a className="page-link" href="#">2</a></li>
-                        <li className="page-item"><a className="page-link" href="#">3</a></li>
-                        <li className="page-item"><a className="page-link" href="#">»</a></li>
+                        <li className="page-item">
+                          <a className="page-link" href="#">
+                            «
+                          </a>
+                        </li>
+                        <li className="page-item">
+                          <a className="page-link" href="#">
+                            1
+                          </a>
+                        </li>
+                        <li className="page-item">
+                          <a className="page-link" href="#">
+                            2
+                          </a>
+                        </li>
+                        <li className="page-item">
+                          <a className="page-link" href="#">
+                            3
+                          </a>
+                        </li>
+                        <li className="page-item">
+                          <a className="page-link" href="#">
+                            »
+                          </a>
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -127,43 +155,44 @@ const DashboardExample = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {
-                          data.map((monitoring, index) => {
-                            
-                                              
-                            return <tr key ={index}>
+                        {data.map((monitoring, index) => {
+                          return (
+                            <tr key={index}>
                               <td>{index + 1}</td>
                               <td>{monitoring.deviceName}</td>
                               <td>{monitoring.description}</td>
                               <td>{monitoring.valveStatus}</td>
                               <td>
-                              {monitoring.status === true &&
-                              <button className="btn btn-success btn-sm" disabled>
-                                  Active
-                              </button>
-                              }
-                              {monitoring.status === false &&
-                              <button className="btn btn-danger btn-sm" disabled>
-                                  Off
-                              </button>
-                              }
+                                {monitoring.status === true && (
+                                  <button
+                                    className="btn btn-success btn-sm"
+                                    disabled
+                                  >
+                                    Active
+                                  </button>
+                                )}
+                                {monitoring.status === false && (
+                                  <button
+                                    className="btn btn-danger btn-sm"
+                                    disabled
+                                  >
+                                    Off
+                                  </button>
+                                )}
                               </td>
 
                               <td>
-                              <Link to="/DetailDevice"
-                                state={monitoring}                                
-                              >
-                                <button className="btn btn-primary btn-block">
-                                  Detail
-                                </button>
-                              </Link>
+                                <Link to="/DetailDevice" state={monitoring}>
+                                  <button className="btn btn-primary btn-block">
+                                    Detail
+                                  </button>
+                                </Link>
                               </td>
                             </tr>
-                            
-                          })
-                        }
+                          );
+                        })}
 
-{/* 
+                        {/* 
                         <tr>
                           <td>1.</td>
                           <td>Update software</td>
