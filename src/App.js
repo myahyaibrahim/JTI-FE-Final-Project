@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
@@ -13,10 +12,11 @@ import AddDevice from "./page/AddDevice";
 import MyDevices from "./page/MyDevices";
 import Register from "./page/Register";
 import DetailDevice from "./page/DetailDevice";
+import EditDevice from "./page/EditDevice";
 
 function App() {
   const [statusValue, setStatusValue] = useState({
-    navDisplay: "none",
+    navDisplay: "block",
   });
   const valueContext = { statusValue, setStatusValue };
 
@@ -39,6 +39,7 @@ function App() {
             <Route path="/AddDevice" element={<AddDevice />} />
             <Route path="/MyDevices" element={<MyDevices />} />
             <Route path="/DetailDevice" element={<DetailDevice />} />
+            <Route path="/EditDevice/:uuid" element={<EditDevice />} />
           </Routes>
 
           <div

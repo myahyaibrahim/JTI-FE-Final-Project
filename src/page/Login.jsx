@@ -7,8 +7,11 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [title] = useState("Login");
+
   const navigate = useNavigate();
+
   const valueContext = useContext(StatusContext);
+
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -21,17 +24,12 @@ export default function Login() {
   });
 
   useEffect(() => {
-    if (localStorage.getItem("username") === null) {
+    if (localStorage.getItem("uuid") === null) {
       valueContext.setStatusValue({
         ...valueContext.statusValue,
         navDisplay: "none",
       });
     }
-
-    valueContext.setStatusValue({
-      ...valueContext.statusValue,
-      navDisplay: "none",
-    });
 
     // Set page title
     document.title = title;
@@ -52,6 +50,7 @@ export default function Login() {
     axios
       .post(api + "/login", loginData, {
         headers: { "Content-Type": "application/json" },
+        withCredentials: true,
       })
       .then((res) => {
         if (res.request.status === 200) {
@@ -61,11 +60,11 @@ export default function Login() {
             navDisplay: "block",
           });
           // Upload username to session storage
-          sessionStorage.setItem("id", res.data.id);
-          sessionStorage.setItem("uuid", res.data.uuid);
-          sessionStorage.setItem("name", res.data.name);
-          sessionStorage.setItem("email", res.data.email);
-          sessionStorage.setItem("username", res.data.username);
+          localStorage.setItem("id", res.data.id);
+          localStorage.setItem("uuid", res.data.uuid);
+          localStorage.setItem("name", res.data.name);
+          localStorage.setItem("email", res.data.email);
+          localStorage.setItem("username", res.data.username);
 
           navigate("/", { replace: true });
         }
@@ -78,12 +77,6 @@ export default function Login() {
           message: err.response.data.msg,
         });
       });
-
-    // Enable Navigation bar
-    // valueContext.setStatusValue({
-    //   ...valueContext.statusValue,
-    //   navDisplay: "block",
-    // });
   };
 
   return (

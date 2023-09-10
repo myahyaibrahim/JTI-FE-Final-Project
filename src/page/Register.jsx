@@ -6,7 +6,9 @@ import { Alert } from "reactstrap";
 
 function Register() {
   const [title] = useState("Register");
+
   const valueContext = useContext(StatusContext);
+
   const [registerData, setRegisterData] = useState({
     name: "",
     email: "",
@@ -22,17 +24,12 @@ function Register() {
   });
 
   useEffect(() => {
-    if (localStorage.getItem("username") === null) {
+    if (localStorage.getItem("uuid") === null) {
       valueContext.setStatusValue({
         ...valueContext.statusValue,
         navDisplay: "none",
       });
     }
-
-    valueContext.setStatusValue({
-      ...valueContext.statusValue,
-      navDisplay: "none",
-    });
 
     // Set page title
     document.title = title;
@@ -64,9 +61,6 @@ function Register() {
             type: "success",
             message: res.data.msg,
           });
-
-          // Upload username to local storage
-          //   sessionStorage.setItem("username", registerData["username"]);
         } else {
           // Error
           setStatus({
