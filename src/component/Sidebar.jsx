@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
-  const username = sessionStorage.getItem("username");
+  const username = localStorage.getItem("username");
 
   return (
     <div>

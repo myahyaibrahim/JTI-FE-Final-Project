@@ -1,13 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import { StatusContext } from "../StatusContext";
-import axios from "axios";
-import { api } from "../Configuration";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Alert } from "reactstrap";
 
-function AddDevice() {
+function EditDevice() {
   const [title] = useState("Add Device");
 
-  // const valueContext = useContext(StatusContext);
+  const params = useParams();
 
   const [deviceData, setDeviceData] = useState({
     deviceName: "",
@@ -28,6 +26,10 @@ function AddDevice() {
   });
 
   useEffect(() => {
+    console.log("UUID Device");
+    console.log(params);
+    // Fetch device informatiom/configuration from database
+
     // Set page title
     document.title = title;
   }, []);
@@ -46,33 +48,9 @@ function AddDevice() {
     });
   };
 
-  const onAddClicked = (event) => {
+  const onSaveButtonClicked = (event) => {
     event.preventDefault();
-    console.log(deviceData);
-
-    axios
-      .post(api + "/monitor", deviceData, {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      })
-      .then((res) => {
-        if (res.request.status === 201) {
-          console.log(res);
-          setStatus({
-            display: "block",
-            type: "success",
-            message: res.data.msg,
-          });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        setStatus({
-          display: "block",
-          type: "danger",
-          message: err.response.data.msg,
-        });
-      });
+    console.log("save button");
   };
 
   return (
@@ -275,10 +253,10 @@ function AddDevice() {
           <button
             type="submit"
             className="btn btn-primary"
-            onClick={onAddClicked}
+            onClick={onSaveButtonClicked}
             style={{ marginBottom: "10px" }}
           >
-            Add device
+            Save changes
           </button>
         </div>
       </section>
@@ -286,4 +264,4 @@ function AddDevice() {
   );
 }
 
-export default AddDevice;
+export default EditDevice;
