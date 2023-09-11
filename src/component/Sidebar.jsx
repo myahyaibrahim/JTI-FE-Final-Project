@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const username = localStorage.getItem("username");
+
+  useEffect(() => {}, [username]);
 
   return (
     <div>
@@ -58,36 +60,26 @@ const Sidebar = () => {
                 </NavLink>
               </li>
 
-              {/* ELEMENTS BELOW WILL BE DELETED */}
-              <li className="nav-header">WILL BE DELETED</li>
-              <li className="nav-item menu-open">
-                <a href="#" className="nav-link active">
-                  <i className="nav-icon fas fa-tachometer-alt" />
-                  <p>
-                    Dashboard
-                    <i className="right fas fa-angle-left" />
-                  </p>
-                </a>
-                <ul className="nav nav-treeview">
-                  <li className="nav-item">
-                    <a href="./index.html" className="nav-link">
-                      <i className="far fa-circle nav-icon" />
-                      <p>Dashboard v1</p>
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a href="./index2.html" className="nav-link">
-                      <i className="far fa-circle nav-icon" />
-                      <p>Dashboard v2</p>
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a href="./index3.html" className="nav-link active">
-                      <i className="far fa-circle nav-icon" />
-                      <p>Dashboard v3</p>
-                    </a>
-                  </li>
-                </ul>
+              <li className="nav-header">REPORT</li>
+              <li className="nav-item">
+                <NavLink to="/MakeReport" className="nav-link">
+                  <i className="nav-icon far fa-plus-square" />
+                  <p>Make a New Report</p>
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/MyReports" className="nav-link">
+                  <i className="nav-icon fa fa-list" />
+                  <p>My Reports</p>
+                </NavLink>
+              </li>
+
+              <li className="nav-header">SETTINGS</li>
+              <li className="nav-item">
+                <NavLink to="/EditProfile" className="nav-link">
+                  <i className="nav-icon far fa-plus-square" />
+                  <p>Edit Profile</p>
+                </NavLink>
               </li>
             </ul>
           </nav>

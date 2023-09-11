@@ -92,6 +92,7 @@ const DashboardExample = () => {
             <div className="row">
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
+<<<<<<< HEAD
                   <span className="info-box-icon"><i className="" />{countDevice}</span>
                   <div className="info-box-content">
                     <span className="info-box-text">Total Devices </span>
@@ -111,11 +112,26 @@ const DashboardExample = () => {
                   <span className="info-box-icon"><i className="" />{countStatusDeactive}</span>
                   <div className="info-box-content">
                     <span className="info-box-text">Total Devices Non-Active</span>
+=======
+                  <span className="info-box-icon">
+                    <i className="far fa-bookmark" />
+                  </span>
+                  <div className="info-box-content">
+                    <span className="info-box-text">Bookmarks</span>
+                    <span className="info-box-number">41,410</span>
+                    <div className="progress">
+                      <div className="progress-bar" style={{ width: "70%" }} />
+                    </div>
+                    <span className="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+>>>>>>> main
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
+<<<<<<< HEAD
                   <span className="info-box-icon"><i className="" />{countValve}</span>
                   <div className="info-box-content">
                     <span className="info-box-text">Total Valve Open</span>
@@ -130,19 +146,49 @@ const DashboardExample = () => {
                   <div className="info-box-content">
                   <span className="info-box-text">Water Usage / Water Limit </span>
                   <span class="info-box-number">{sumWaterUsage} / {sumWaterLimit}</span>
+=======
+                  <span className="info-box-icon">
+                    <i className="far fa-bookmark" />
+                  </span>
+                  <div className="info-box-content">
+                    <span className="info-box-text">Bookmarks</span>
+                    <span className="info-box-number">41,410</span>
+                    <div className="progress">
+                      <div className="progress-bar" style={{ width: "70%" }} />
+                    </div>
+                    <span className="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+>>>>>>> main
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
+<<<<<<< HEAD
                   <span className="info-box-icon"><i className="" /> {meanPh}</span>
                   <div className="info-box-content">
                     <span className="info-box-text"> Average ph</span>
+=======
+                  <span className="info-box-icon">
+                    <i className="far fa-bookmark" />
+                  </span>
+                  <div className="info-box-content">
+                    <span className="info-box-text">Bookmarks</span>
+                    <span className="info-box-number">41,410</span>
+                    <div className="progress">
+                      <div className="progress-bar" style={{ width: "70%" }} />
+                    </div>
+                    <span className="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+>>>>>>> main
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
+<<<<<<< HEAD
                   <span className="info-box-icon"><i className="" />{meanTemp}</span>
                   °C
                   <div className="info-box-content">
@@ -161,11 +207,31 @@ const DashboardExample = () => {
               </div>
             </div>                        
             <div className="row">   
+=======
+                  <span className="info-box-icon">
+                    <i className="far fa-bookmark" />
+                  </span>
+                  <div className="info-box-content">
+                    <span className="info-box-text">Bookmarks</span>
+                    <span className="info-box-number">41,410</span>
+                    <div className="progress">
+                      <div className="progress-bar" style={{ width: "25%" }} />
+                    </div>
+                    <span className="progress-description">
+                      25% Increase in 30 Days
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+>>>>>>> main
               <div className="col-md-12">
                 <div className="card">
                   <div className="card-header">
                     <h3 className="card-title">Devices</h3>
                     <div className="card-tools">
+<<<<<<< HEAD
                       {/* <ul className="pagination pagination-sm float-right">
                         <li className="page-item"><a className="page-link" href="#">«</a></li>
                         <li className="page-item"><a className="page-link" href="#">1</a></li>
@@ -173,6 +239,35 @@ const DashboardExample = () => {
                         <li className="page-item"><a className="page-link" href="#">3</a></li>
                         <li className="page-item"><a className="page-link" href="#">»</a></li>
                       </ul> */}
+=======
+                      <ul className="pagination pagination-sm float-right">
+                        <li className="page-item">
+                          <a className="page-link" href="#">
+                            «
+                          </a>
+                        </li>
+                        <li className="page-item">
+                          <a className="page-link" href="#">
+                            1
+                          </a>
+                        </li>
+                        <li className="page-item">
+                          <a className="page-link" href="#">
+                            2
+                          </a>
+                        </li>
+                        <li className="page-item">
+                          <a className="page-link" href="#">
+                            3
+                          </a>
+                        </li>
+                        <li className="page-item">
+                          <a className="page-link" href="#">
+                            »
+                          </a>
+                        </li>
+                      </ul>
+>>>>>>> main
                     </div>
                   </div>
                   <div className="card-body p-0">
@@ -189,42 +284,57 @@ const DashboardExample = () => {
                         </tr>
                       </thead>
                       <tbody>
+<<<<<<< HEAD
                         {
                           data.map((monitoring, index) => {
                             
                             return <tr key ={index}>
+=======
+                        {data.map((monitoring, index) => {
+                          return (
+                            <tr key={index}>
+>>>>>>> main
                               <td>{index + 1}</td>
                               <td>{monitoring.deviceName}</td>
                               <td>
-                              {monitoring.status === true &&
-                              <button className="btn btn-success btn-sm" disabled>
-                                  Active
-                              </button>
-                              }
-                              {monitoring.status === false &&
-                              <button className="btn btn-danger btn-sm" disabled>
-                                  Off
-                              </button>
-                              }
+                                {monitoring.status === true && (
+                                  <button
+                                    className="btn btn-success btn-sm"
+                                    disabled
+                                  >
+                                    Active
+                                  </button>
+                                )}
+                                {monitoring.status === false && (
+                                  <button
+                                    className="btn btn-danger btn-sm"
+                                    disabled
+                                  >
+                                    Off
+                                  </button>
+                                )}
                               </td>
                               <td>{monitoring.valveStatus === true ? "Open" : "Closed"}</td>                              
                               <td>{monitoring.waterUsage} / {monitoring.waterLimit}</td>                              
 
                               <td>
-                              <Link to="/DetailDevice"
-                                state={monitoring}                                
-                              >
-                                <button className="btn btn-primary btn-block">
-                                  Detail
-                                </button>
-                              </Link>
+                                <Link to="/DetailDevice" state={monitoring}>
+                                  <button className="btn btn-primary btn-block">
+                                    Detail
+                                  </button>
+                                </Link>
                               </td>
                             </tr>
+<<<<<<< HEAD
 
                           })
                         }
+=======
+                          );
+                        })}
+>>>>>>> main
 
-{/* 
+                        {/* 
                         <tr>
                           <td>1.</td>
                           <td>Update software</td>

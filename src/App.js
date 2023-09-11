@@ -13,6 +13,10 @@ import MyDevices from "./page/MyDevices";
 import Register from "./page/Register";
 import DetailDevice from "./page/DetailDevice";
 import EditDevice from "./page/EditDevice";
+import AddReport from "./page/AddReport";
+import MyReports from "./page/MyReports";
+import ReportDetail from "./page/ReportDetail";
+import Setting from "./page/Setting";
 
 function App() {
   const [statusValue, setStatusValue] = useState({
@@ -40,6 +44,10 @@ function App() {
             <Route path="/MyDevices" element={<MyDevices />} />
             <Route path="/DetailDevice" element={<DetailDevice />} />
             <Route path="/EditDevice/:uuid" element={<EditDevice />} />
+            <Route path="/MakeReport" element={<AddReport />} />
+            <Route path="/MyReports" element={<MyReports />} />
+            <Route path="/ReportDetail/:uuid" element={<ReportDetail />} />
+            <Route path="/EditProfile" element={<Setting />} />
           </Routes>
 
           <div
