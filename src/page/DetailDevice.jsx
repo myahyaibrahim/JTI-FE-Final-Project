@@ -7,10 +7,6 @@ const DetailDevice = (props) => {
     const propsData = location.state;
     console.log(propsData);    
 
-    const badWater  
-    
-    if(){}
-
 
     return(
         <div className="content-wrapper">
