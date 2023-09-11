@@ -71,6 +71,14 @@ const Sidebar = () => {
                   <p>My Reports</p>
                 </NavLink>
               </li>
+
+              <li className="nav-header">SETTINGS</li>
+              <li className="nav-item">
+                <NavLink to="/Setting" className="nav-link">
+                  <i className="nav-icon far fa-plus-square" />
+                  <p>Setting</p>
+                </NavLink>
+              </li>
             </ul>
           </nav>
         </div>

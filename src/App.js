@@ -16,6 +16,7 @@ import EditDevice from "./page/EditDevice";
 import AddReport from "./page/AddReport";
 import MyReports from "./page/MyReports";
 import ReportDetail from "./page/ReportDetail";
+import Setting from "./page/Setting";
 
 function App() {
   const [statusValue, setStatusValue] = useState({
@@ -46,6 +47,7 @@ function App() {
             <Route path="/MakeReport" element={<AddReport />} />
             <Route path="/MyReports" element={<MyReports />} />
             <Route path="/ReportDetail/:uuid" element={<ReportDetail />} />
+            <Route path="/Setting" element={<Setting />} />
           </Routes>
 
           <div
