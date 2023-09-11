@@ -2,19 +2,71 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { api } from "../Configuration";
 import { Link } from "react-router-dom";
+import  _  from 'lodash';
 
 const DashboardExample = () => {
-  const userLogin = localStorage.getItem("id");
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios
-      .get(api + "/monitor/" + userLogin)
-      .then((res) => setData(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+  
+  const totalDevices = 0;
 
-  //  console.log(userLogin)
+//  const userLogin = sessionStorage.getItem("id");
+  const [data, setData] = useState([])
+  useEffect(()=>{
+    axios.get(api + "/monitor", {withCredentials: true})
+    .then(res => setData(res.data))
+    .catch(err => console.log(err));
+  },[])
 
+
+//  console.log(data)
+
+///////////////hitung jumlah device yang aktif
+  let countStatusActive=0, count1;
+  count1 = data.filter(item => item.status === true );
+  countStatusActive = count1.length;
+  
+///////////////hitung jumlah device yang tidak aktif
+  let countStatusDeactive=0, count2;
+  count2 = data.filter(item => item.status === false );
+  countStatusDeactive = count2.length;
+
+///////////////hitung jumlah device yang ada
+  let countDevice=0, count0;
+  count0 = data.filter(item => item.id != null );
+  countDevice = count0.length;
+
+///////////////hitung jumlah device yang valve open
+  let countValve=0, count3;
+  count3 = data.filter(item => item.valveStatus === true );
+  countValve = count3.length;
+
+  /////////////////////////////total water usage semua device///////////////////////////////////////
+  let sumWaterUsage = data.reduce(function(prev, current) {
+    return prev + +current.waterUsage
+  }, 0);
+
+  /////////////////////////////total water Limit semua device///////////////////////////////////////
+  let sumWaterLimit = data.reduce(function(prev, current) {
+    return prev + +current.waterLimit
+  }, 0);
+
+  /////////////////////////////mean ph semua device///////////////////////////////////////
+  let sumPh = data.reduce(function(prev, current) {
+    return prev + +current.ph 
+  }, 0);
+  let meanPh = sumPh / data.length
+
+  /////////////////////////////mean temperature semua device///////////////////////////////////////
+  let sumTemp = data.reduce(function(prev, current) {
+    return prev + +current.temperature
+  }, 0);
+  let meanTemp = sumTemp / data.length
+
+  /////////////////////////////mean metal semua device///////////////////////////////////////
+  let sumMetal = data.reduce(function(prev, current) {
+    return prev + +current.metal 
+  }, 0);
+  let meanMetal = sumMetal / data.length
+    
   return (
     <div>
       <div className="content-wrapper">
@@ -40,6 +92,27 @@ const DashboardExample = () => {
             <div className="row">
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
+<<<<<<< HEAD
+                  <span className="info-box-icon"><i className="" />{countDevice}</span>
+                  <div className="info-box-content">
+                    <span className="info-box-text">Total Devices </span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3 col-sm-6 col-12">
+                <div className="info-box bg-gradient-success">
+                  <span className="info-box-icon"><i className="" />{countStatusActive}</span>
+                  <div className="info-box-content">
+                    <span className="info-box-text">Total Devices Active</span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3 col-sm-6 col-12">
+                <div className="info-box bg-danger">
+                  <span className="info-box-icon"><i className="" />{countStatusDeactive}</span>
+                  <div className="info-box-content">
+                    <span className="info-box-text">Total Devices Non-Active</span>
+=======
                   <span className="info-box-icon">
                     <i className="far fa-bookmark" />
                   </span>
@@ -52,11 +125,28 @@ const DashboardExample = () => {
                     <span className="progress-description">
                       70% Increase in 30 Days
                     </span>
+>>>>>>> main
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
+<<<<<<< HEAD
+                  <span className="info-box-icon"><i className="" />{countValve}</span>
+                  <div className="info-box-content">
+                    <span className="info-box-text">Total Valve Open</span>
+                  </div>
+                </div>
+              </div>
+            </div>  
+            <div className="row">
+              <div className="col-md-3 col-sm-6 col-12">
+                <div className="info-box bg-info">
+                  {/* <span className="info-box-icon"><i class="fa-solid fa-droplet"></i></span> */}
+                  <div className="info-box-content">
+                  <span className="info-box-text">Water Usage / Water Limit </span>
+                  <span class="info-box-number">{sumWaterUsage} / {sumWaterLimit}</span>
+=======
                   <span className="info-box-icon">
                     <i className="far fa-bookmark" />
                   </span>
@@ -69,11 +159,17 @@ const DashboardExample = () => {
                     <span className="progress-description">
                       70% Increase in 30 Days
                     </span>
+>>>>>>> main
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
+<<<<<<< HEAD
+                  <span className="info-box-icon"><i className="" /> {meanPh}</span>
+                  <div className="info-box-content">
+                    <span className="info-box-text"> Average ph</span>
+=======
                   <span className="info-box-icon">
                     <i className="far fa-bookmark" />
                   </span>
@@ -86,11 +182,32 @@ const DashboardExample = () => {
                     <span className="progress-description">
                       70% Increase in 30 Days
                     </span>
+>>>>>>> main
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
+<<<<<<< HEAD
+                  <span className="info-box-icon"><i className="" />{meanTemp}</span>
+                  °C
+                  <div className="info-box-content">
+                    <span className="info-box-text">Average Temperature</span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3 col-sm-6 col-12">
+                <div className="info-box bg-info">
+                  <span className="info-box-icon"><i className="" />{meanMetal} </span>
+                  mg/l
+                  <div className="info-box-content">
+                    <span className="info-box-text">Average Metal</span>
+                  </div>
+                </div>
+              </div>
+            </div>                        
+            <div className="row">   
+=======
                   <span className="info-box-icon">
                     <i className="far fa-bookmark" />
                   </span>
@@ -108,11 +225,21 @@ const DashboardExample = () => {
               </div>
             </div>
             <div className="row">
+>>>>>>> main
               <div className="col-md-12">
                 <div className="card">
                   <div className="card-header">
                     <h3 className="card-title">Devices</h3>
                     <div className="card-tools">
+<<<<<<< HEAD
+                      {/* <ul className="pagination pagination-sm float-right">
+                        <li className="page-item"><a className="page-link" href="#">«</a></li>
+                        <li className="page-item"><a className="page-link" href="#">1</a></li>
+                        <li className="page-item"><a className="page-link" href="#">2</a></li>
+                        <li className="page-item"><a className="page-link" href="#">3</a></li>
+                        <li className="page-item"><a className="page-link" href="#">»</a></li>
+                      </ul> */}
+=======
                       <ul className="pagination pagination-sm float-right">
                         <li className="page-item">
                           <a className="page-link" href="#">
@@ -140,6 +267,7 @@ const DashboardExample = () => {
                           </a>
                         </li>
                       </ul>
+>>>>>>> main
                     </div>
                   </div>
                   <div className="card-body p-0">
@@ -148,20 +276,26 @@ const DashboardExample = () => {
                         <tr>
                           <th>#</th>
                           <th>Name</th>
-                          <th>Description</th>
-                          <th>valve</th>
                           <th>Status</th>
+                          <th>Valve Status</th>
+                          <th>Water Usage</th>
+
                           <th></th>
                         </tr>
                       </thead>
                       <tbody>
+<<<<<<< HEAD
+                        {
+                          data.map((monitoring, index) => {
+                            
+                            return <tr key ={index}>
+=======
                         {data.map((monitoring, index) => {
                           return (
                             <tr key={index}>
+>>>>>>> main
                               <td>{index + 1}</td>
                               <td>{monitoring.deviceName}</td>
-                              <td>{monitoring.description}</td>
-                              <td>{monitoring.valveStatus}</td>
                               <td>
                                 {monitoring.status === true && (
                                   <button
@@ -180,6 +314,8 @@ const DashboardExample = () => {
                                   </button>
                                 )}
                               </td>
+                              <td>{monitoring.valveStatus === true ? "Open" : "Closed"}</td>                              
+                              <td>{monitoring.waterUsage} / {monitoring.waterLimit}</td>                              
 
                               <td>
                                 <Link to="/DetailDevice" state={monitoring}>
@@ -189,8 +325,14 @@ const DashboardExample = () => {
                                 </Link>
                               </td>
                             </tr>
+<<<<<<< HEAD
+
+                          })
+                        }
+=======
                           );
                         })}
+>>>>>>> main
 
                         {/* 
                         <tr>

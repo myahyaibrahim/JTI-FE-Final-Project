@@ -1,6 +1,55 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { StatusContext } from "../StatusContext";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Alert } from "reactstrap";
+import { api } from "../Configuration";
 
 const Header = () => {
+
+  const navigate = useNavigate();
+  const valueContext = useContext(StatusContext);
+
+  const [status, setStatus] = useState({
+    display: "none",
+    type: "",
+    message: "",
+  });  
+
+
+  const onLogoutButtonClicked = (event) => {
+    event.preventDefault();
+
+    
+    axios
+      .delete(api + "/logout")
+      .then((res) => {
+        if (res.request.status === 200) {
+          // Enable navbar
+          valueContext.setStatusValue({
+            ...valueContext.statusValue,
+            navDisplay: "block",
+          });
+          // delete local storage
+          localStorage.removeItem("id", res.data.id);
+          localStorage.removeItem("uuid", res.data.uuid);
+          localStorage.removeItem("name", res.data.name);
+          localStorage.removeItem("email", res.data.email);
+          localStorage.removeItem("username", res.data.username);
+
+          navigate("/login", { replace: true });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setStatus({
+          display: "block",
+          type: "danger",
+          message: err.response.data.msg,
+        });
+      });
+  };
+
   return (
     <div>
       <nav className="main-header navbar navbar-expand navbar-white navbar-light">
@@ -138,6 +187,10 @@ const Header = () => {
               </a>
             </div>
           </li>
+          {/* Logout */}
+            <a className="nav-link" data-toggle="" href="">
+              <i className="fas fa-sign-out-alt" onClick={onLogoutButtonClicked}/>
+            </a>
           {/* Full screen toggle */}
           <li className="nav-item">
             <a
