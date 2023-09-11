@@ -4,15 +4,19 @@ import { api } from "../Configuration";
 import { Link } from "react-router-dom";
 
 const DashboardExample = () => {
-  const userLogin = sessionStorage.getItem("id");
+  
+  const totalDevices = 0;
+
+//  const userLogin = sessionStorage.getItem("id");
   const [data, setData] = useState([])
   useEffect(()=>{
-    axios.get(api + "/monitor/" + userLogin)
+    axios.get(api + "/monitor", {withCredentials: true})
     .then(res => setData(res.data))
     .catch(err => console.log(err));
   },[])
 
-//  console.log(userLogin)
+  
+  console.log(data)
 
   return (
     <div>
@@ -39,61 +43,33 @@ const DashboardExample = () => {
             <div className="row">
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
-                  <span className="info-box-icon"><i className="far fa-bookmark" /></span>
+                  <span className="info-box-icon">3<i className="" /></span>
                   <div className="info-box-content">
-                    <span className="info-box-text">Bookmarks</span>
-                    <span className="info-box-number">41,410</span>
-                    <div className="progress">
-                      <div className="progress-bar" style={{width: '70%'}} />
-                    </div>
-                    <span className="progress-description">
-                      70% Increase in 30 Days
-                    </span>
+                    <span className="info-box-text">Total Devices </span>
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
-                  <span className="info-box-icon"><i className="far fa-bookmark" /></span>
+                  <span className="info-box-icon"><i className="" /></span>
                   <div className="info-box-content">
-                    <span className="info-box-text">Bookmarks</span>
-                    <span className="info-box-number">41,410</span>
-                    <div className="progress">
-                      <div className="progress-bar" style={{width: '70%'}} />
-                    </div>
-                    <span className="progress-description">
-                      70% Increase in 30 Days
-                    </span>
+                    <span className="info-box-text">Total Devices Active</span>
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
-                  <span className="info-box-icon"><i className="far fa-bookmark" /></span>
+                  <span className="info-box-icon"><i className="" /></span>
                   <div className="info-box-content">
-                    <span className="info-box-text">Bookmarks</span>
-                    <span className="info-box-number">41,410</span>
-                    <div className="progress">
-                      <div className="progress-bar" style={{width: '70%'}} />
-                    </div>
-                    <span className="progress-description">
-                      70% Increase in 30 Days
-                    </span>
+                    <span className="info-box-text">Total Devices Non-Active</span>
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
-                  <span className="info-box-icon"><i className="far fa-bookmark" /></span>
+                  <span className="info-box-icon"><i className="" /></span>
                   <div className="info-box-content">
-                    <span className="info-box-text">Bookmarks</span>
-                    <span className="info-box-number">41,410</span>
-                    <div className="progress">
-                      <div className="progress-bar" style={{width: '25%'}} />
-                    </div>
-                    <span className="progress-description">
-                      25% Increase in 30 Days
-                    </span>
+                    <span className="info-box-text">Total Deleted Device</span>
                   </div>
                 </div>
               </div>
@@ -105,13 +81,13 @@ const DashboardExample = () => {
                   <div className="card-header">
                     <h3 className="card-title">Devices</h3>
                     <div className="card-tools">
-                      <ul className="pagination pagination-sm float-right">
+                      {/* <ul className="pagination pagination-sm float-right">
                         <li className="page-item"><a className="page-link" href="#">«</a></li>
                         <li className="page-item"><a className="page-link" href="#">1</a></li>
                         <li className="page-item"><a className="page-link" href="#">2</a></li>
                         <li className="page-item"><a className="page-link" href="#">3</a></li>
                         <li className="page-item"><a className="page-link" href="#">»</a></li>
-                      </ul>
+                      </ul> */}
                     </div>
                   </div>
                   <div className="card-body p-0">
@@ -120,8 +96,7 @@ const DashboardExample = () => {
                         <tr>
                           <th>#</th>
                           <th>Name</th>
-                          <th>Description</th>
-                          <th>valve</th>
+                          <th>Valve Status</th>
                           <th>Status</th>
                           <th></th>
                         </tr>
@@ -130,12 +105,10 @@ const DashboardExample = () => {
                         {
                           data.map((monitoring, index) => {
                             
-                                              
                             return <tr key ={index}>
                               <td>{index + 1}</td>
                               <td>{monitoring.deviceName}</td>
-                              <td>{monitoring.description}</td>
-                              <td>{monitoring.valveStatus}</td>
+                              <td>{monitoring.valveStatus === true ? "Open" : "Closed"}</td>                              
                               <td>
                               {monitoring.status === true &&
                               <button className="btn btn-success btn-sm" disabled>
@@ -159,7 +132,7 @@ const DashboardExample = () => {
                               </Link>
                               </td>
                             </tr>
-                            
+
                           })
                         }
 

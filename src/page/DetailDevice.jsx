@@ -18,21 +18,9 @@ const DetailDevice = (props) => {
                 <div className="container">
                     <div className="team-single">
                         <div className="row">
-                            <div className="col-lg-4 col-md-5 xs-margin-30px-bottom">
+                            <div className="col-lg-4 col-md-5 xs-margin-30px-bottom ">
                                 <div className="team-single-img">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt=""/>
-                                </div>
-                                <div className="bg-light-gray padding-30px-all md-padding-25px-all sm-padding-20px-all text-center">
-                                    <h4 className="margin-10px-bottom font-size24 md-font-size22 sm-font-size20 font-weight-600">className Teacher</h4>
-                                    <p className="sm-width-95 sm-margin-auto">We are proud of child student. We teaching great activities and best program for your kids.</p>
-                                    <div className="margin-20px-top team-single-icons">
-                                        <ul className="no-margin">
-                                            <li><a href="javascript:void(0)"><i className="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i className="fab fa-twitter"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i className="fab fa-google-plus-g"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i className="fab fa-instagram"></i></a></li>
-                                        </ul>
-                                    </div>
+                                    <img src="https://tankdoctor.com.au/wp-content/uploads/2021/10/Filtatank-Twin-filter-system-with-UV-clear-Housings-600x600.jpg" alt="" class="img-thumbnail"/>
                                 </div>
                             </div>
 
@@ -46,11 +34,34 @@ const DetailDevice = (props) => {
 
                                                 <div className="row">
                                                     <div className="col-md-5 col-5">
-                                                        <i className="fas fa-graduation-cap text-orange"></i>
-                                                        <strong className="margin-10px-left text-orange">Serial Number:</strong>
+                                                        <i className=""></i>
+                                                        <strong className="margin-10px-left">Serial Number</strong>
                                                     </div>
                                                     <div className="col-md-7 col-7">
-                                                        <p>{propsData.deviceSerialNumber}</p>
+                                                        <p>:{propsData.deviceSerialNumber}</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div className="row">
+                                                    <div className="col-md-5 col-5">
+                                                        <i className=""></i>
+                                                        <strong className="margin-10px-left ">Status</strong>
+                                                    </div>
+                                                    <div className="col-md-7 col-7">
+                                                        <p>:{propsData.valveStatus === true ? "Open" : "Closed"}</p>
+                                                    </div>
+                                                </div>
+
+                                            </li>
+                                            <li>
+                                                <div className="row">
+                                                    <div className="col-md-5 col-5">
+                                                        <i className=""></i>
+                                                        <strong className="margin-10px-left text-lightred">Water Tolerance</strong>
+                                                    </div>
+                                                    <div className="col-md-7 col-7">
+                                                        <p>{propsData.waterTolerance}</p>
                                                     </div>
                                                 </div>
 
@@ -59,11 +70,11 @@ const DetailDevice = (props) => {
 
                                                 <div className="row">
                                                     <div className="col-md-5 col-5">
-                                                        <i className="far fa-gem text-yellow"></i>
-                                                        <strong className="margin-10px-left text-yellow">Status:</strong>
+                                                        <i className=""></i>
+                                                        <strong className="margin-10px-left">Total Dissolved Solids:</strong>
                                                     </div>
                                                     <div className="col-md-7 col-7">
-                                                        <p>{propsData.status}</p>
+                                                        <p>{propsData.totalDissolvedSolids}</p>
                                                     </div>
                                                 </div>
 
@@ -72,37 +83,11 @@ const DetailDevice = (props) => {
 
                                                 <div className="row">
                                                     <div className="col-md-5 col-5">
-                                                        <i className="far fa-file text-lightred"></i>
-                                                        <strong className="margin-10px-left text-lightred">Courses:</strong>
+                                                        <i className=""></i>
+                                                        <strong className="margin-10px-left xs-margin-four-left ">Turbidity:</strong>
                                                     </div>
                                                     <div className="col-md-7 col-7">
-                                                        <p>Design Category</p>
-                                                    </div>
-                                                </div>
-
-                                            </li>
-                                            <li>
-
-                                                <div className="row">
-                                                    <div className="col-md-5 col-5">
-                                                        <i className="fas fa-map-marker-alt text-green"></i>
-                                                        <strong className="margin-10px-left text-green">Address:</strong>
-                                                    </div>
-                                                    <div className="col-md-7 col-7">
-                                                        <p>Regina ST, London, SK.</p>
-                                                    </div>
-                                                </div>
-
-                                            </li>
-                                            <li>
-
-                                                <div className="row">
-                                                    <div className="col-md-5 col-5">
-                                                        <i className="fas fa-mobile-alt text-purple"></i>
-                                                        <strong className="margin-10px-left xs-margin-four-left text-purple">Phone:</strong>
-                                                    </div>
-                                                    <div className="col-md-7 col-7">
-                                                        <p>(+44) 123 456 789</p>
+                                                        <p>{propsData.turbidity}</p>
                                                     </div>
                                                 </div>
 
@@ -110,24 +95,79 @@ const DetailDevice = (props) => {
                                             <li>
                                                 <div className="row">
                                                     <div className="col-md-5 col-5">
-                                                        <i className="fas fa-envelope text-pink"></i>
-                                                        <strong className="margin-10px-left xs-margin-four-left text-pink">Email:</strong>
+                                                        <i className=""></i>
+                                                        <strong className="margin-10px-left xs-margin-four-left ">Temperature:</strong>
                                                     </div>
                                                     <div className="col-md-7 col-7">
-                                                        <p><a href="javascript:void(0)">addyour@emailhere</a></p>
+                                                        <p>{propsData.temperature}</p>
                                                     </div>
                                                 </div>
                                             </li>
+                                            <li>
+                                                <div className="row">
+                                                    <div className="col-md-5 col-5">
+                                                        <i className=""></i>
+                                                        <strong className="margin-10px-left xs-margin-four-left ">Color:</strong>
+                                                    </div>
+                                                    <div className="col-md-7 col-7">
+                                                        <p>{propsData.color}</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div className="row">
+                                                    <div className="col-md-5 col-5">
+                                                        <i className=""></i>
+                                                        <strong className="margin-10px-left xs-margin-four-left ">Electrical Conductivity:</strong>
+                                                    </div>
+                                                    <div className="col-md-7 col-7">
+                                                        <p>{propsData.electricalConductivity}</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div className="row">
+                                                    <div className="col-md-5 col-5">
+                                                        <i className=""></i>
+                                                        <strong className="margin-10px-left xs-margin-four-left ">Ph:</strong>
+                                                    </div>
+                                                    <div className="col-md-7 col-7">
+                                                        <p>{propsData.ph}</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div className="row">
+                                                    <div className="col-md-5 col-5">
+                                                        <i className=""></i>
+                                                        <strong className="margin-10px-left xs-margin-four-left ">Total Coliforms:</strong>
+                                                    </div>
+                                                    <div className="col-md-7 col-7">
+                                                        <p>{propsData.totalColiforms}</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div className="row">
+                                                    <div className="col-md-5 col-5">
+                                                        <i className=""></i>
+                                                        <strong className="margin-10px-left xs-margin-four-left ">Metal:</strong>
+                                                    </div>
+                                                    <div className="col-md-7 col-7">
+                                                        <p>{propsData.metal}</p>
+                                                    </div>
+                                                </div>
+                                            </li>                                                                                                                                  
                                         </ul>
                                     </div>
 
-                                    <h5 className="font-size24 sm-font-size22 xs-font-size20">Professional Skills</h5>
+                                    <h5 className="font-size24 sm-font-size22 xs-font-size20">Water Monitoring</h5>
 
                                     <div className="sm-no-margin">
                                         <div className="progress-text">
                                             <div className="row">
-                                                <div className="col-7">Positive Behaviors</div>
-                                                <div className="col-5 text-right">40%</div>
+                                                <div className="col-7">Water Usage</div>
+                                                <div className="col-5 text-right">{propsData.waterUsage}%</div>
                                             </div>
                                         </div>
                                         <div className="custom-progress progress">
@@ -135,8 +175,8 @@ const DetailDevice = (props) => {
                                         </div>
                                         <div className="progress-text">
                                             <div className="row">
-                                                <div className="col-7">Teamworking Abilities</div>
-                                                <div className="col-5 text-right">50%</div>
+                                                <div className="col-7">Water Limit</div>
+                                                <div className="col-5 text-right">{propsData.waterLimit}%</div>
                                             </div>
                                         </div>
                                         <div className="custom-progress progress">
@@ -144,8 +184,8 @@ const DetailDevice = (props) => {
                                         </div>
                                         <div className="progress-text">
                                             <div className="row">
-                                                <div className="col-7">Time Management </div>
-                                                <div className="col-5 text-right">60%</div>
+                                                <div className="col-7">Water Usage Timer </div>
+                                                <div className="col-5 text-right">{propsData.waterUsageTimer}%</div>
                                             </div>
                                         </div>
                                         <div className="custom-progress progress">
@@ -153,8 +193,8 @@ const DetailDevice = (props) => {
                                         </div>
                                         <div className="progress-text">
                                             <div className="row">
-                                                <div className="col-7">Excellent Communication</div>
-                                                <div className="col-5 text-right">80%</div>
+                                                <div className="col-7"></div>
+                                                <div className="col-5 text-right">%</div>
                                             </div>
                                         </div>
                                         <div className="custom-progress progress">
