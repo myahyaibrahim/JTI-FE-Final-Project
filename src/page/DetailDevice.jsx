@@ -170,8 +170,8 @@ const DetailDevice = (props) => {
                                                 <div className="col-5 text-right">{propsData.waterUsage}%</div>
                                             </div>
                                         </div>
-                                        <div className="custom-progress progress">
-                                            <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"  className="animated custom-bar progress-bar slideInLeft bg-sky"></div>
+                                        <div className="progress progress-md">
+                                          <div className="progress-bar progress-bar-danger" style={{width: propsData.waterUsage}} />
                                         </div>
                                         <div className="progress-text">
                                             <div className="row">
@@ -179,8 +179,8 @@ const DetailDevice = (props) => {
                                                 <div className="col-5 text-right">{propsData.waterLimit}%</div>
                                             </div>
                                         </div>
-                                        <div className="custom-progress progress">
-                                            <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"  className="animated custom-bar progress-bar slideInLeft bg-orange"></div>
+                                        <div className="progress progress-md">
+                                          <div className="progress-bar progress-bar-danger" style={{width: propsData.waterLimit}} />
                                         </div>
                                         <div className="progress-text">
                                             <div className="row">
@@ -188,17 +188,8 @@ const DetailDevice = (props) => {
                                                 <div className="col-5 text-right">{propsData.waterUsageTimer}%</div>
                                             </div>
                                         </div>
-                                        <div className="custom-progress progress">
-                                            <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"  className="animated custom-bar progress-bar slideInLeft bg-green"></div>
-                                        </div>
-                                        <div className="progress-text">
-                                            <div className="row">
-                                                <div className="col-7"></div>
-                                                <div className="col-5 text-right">%</div>
-                                            </div>
-                                        </div>
-                                        <div className="custom-progress progress">
-                                            <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"  className="animated custom-bar progress-bar slideInLeft bg-yellow"></div>
+                                        <div className="progress progress-md">
+                                          <div className="progress-bar progress-bar-danger" style={{width: propsData.waterUsageTimer}} />
                                         </div>
                                     </div>
 
@@ -209,6 +200,43 @@ const DetailDevice = (props) => {
 
                             </div>
                         </div>
+                        { propsData.totalColiforms === 0 && 
+                        6.5 <= propsData.ph <= 8.5 &&
+                        propsData.turbidity <=5 &&
+                        10 <= propsData.temperature <= 25 && 
+                        propsData.color <= 15 && 
+                        propsData.totalDissolvedSolids <= 500 && 
+                        propsData.electricalConductivity <= 200 && 
+                        propsData.metal <= 0.3 &&
+                              <button className="btn btn-success btn-sm" disabled>
+                                  Drinking Water
+                              </button>
+                        }
+                        { 0 > propsData.totalColiforms < 100 && 
+                        6 <= propsData.ph <= 9 &&
+//                      propsData.turbidity ==0 &&
+                        10 <= propsData.temperature <= 49 && 
+                        propsData.color <= 15 && 
+                        propsData.totalDissolvedSolids <= 500 && 
+                        propsData.electricalConductivity <= 200 && 
+//                      propsData.metal <= 0.3 &&
+                              <button className="btn btn-success btn-sm" disabled>
+                                  Bath Waters
+                              </button>
+                        }
+                        { 100 > propsData.totalColiforms <1000 && 
+                        6 >= propsData.ph >= 8.5 &&
+//                      propsData.turbidity <=5 &&
+                        10 <= propsData.temperature <= 49 && 
+                        propsData.color > 15 && 
+                        propsData.totalDissolvedSolids <= 500 && 
+                        propsData.electricalConductivity <= 200 && 
+                        propsData.metal <= 0.3 &&
+                              <button className="btn btn-success btn-sm" disabled>
+                                  Bad
+                              </button>
+                        }
+
                     </div>
                 </div>                
               </div>

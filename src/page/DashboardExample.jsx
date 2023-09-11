@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { api } from "../Configuration";
 import { Link } from "react-router-dom";
+import  _  from 'lodash';
 
 const DashboardExample = () => {
   
@@ -15,9 +16,50 @@ const DashboardExample = () => {
     .catch(err => console.log(err));
   },[])
 
-  
-  console.log(data)
 
+//  console.log(data)
+
+///////////////hitung jumlah device yang aktif
+  let countStatusActive=0, count1;
+  count1 = data.filter(item => item.status === true );
+  countStatusActive = count1.length;
+  
+///////////////hitung jumlah device yang tidak aktif
+  let countStatusDeactive=0, count2;
+  count2 = data.filter(item => item.status === false );
+  countStatusDeactive = count2.length;
+
+///////////////hitung jumlah device yang ada
+  let countDevice=0, count0;
+  count0 = data.filter(item => item.id != null );
+  countDevice = count0.length;
+
+///////////////hitung jumlah device yang valve open
+  let countValve=0, count3;
+  count3 = data.filter(item => item.valveStatus === true );
+  countValve = count3.length;
+
+  /////////////////////////////total water usage semua device///////////////////////////////////////
+  let sumWaterUsage = data.reduce(function(prev, current) {
+    return prev + +current.waterUsage
+  }, 0);
+
+  /////////////////////////////total water Limit semua device///////////////////////////////////////
+  let sumWaterLimit = data.reduce(function(prev, current) {
+    return prev + +current.waterLimit
+  }, 0);
+
+  /////////////////////////////mean ph semua device///////////////////////////////////////
+  let meanPh = data.reduce(function(prev, current) {
+    
+    return prev + +current.ph 
+  }, 0);
+
+  console.log(meanPh)
+  /////////////////////////////mean temperature semua device///////////////////////////////////////
+
+  /////////////////////////////mean metal semua device///////////////////////////////////////
+    
   return (
     <div>
       <div className="content-wrapper">
@@ -43,23 +85,23 @@ const DashboardExample = () => {
             <div className="row">
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
-                  <span className="info-box-icon">3<i className="" /></span>
+                  <span className="info-box-icon"><i className="" />{countDevice}</span>
                   <div className="info-box-content">
                     <span className="info-box-text">Total Devices </span>
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6 col-12">
-                <div className="info-box bg-info">
-                  <span className="info-box-icon"><i className="" /></span>
+                <div className="info-box bg-gradient-success">
+                  <span className="info-box-icon"><i className="" />{countStatusActive}</span>
                   <div className="info-box-content">
                     <span className="info-box-text">Total Devices Active</span>
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6 col-12">
-                <div className="info-box bg-info">
-                  <span className="info-box-icon"><i className="" /></span>
+                <div className="info-box bg-danger">
+                  <span className="info-box-icon"><i className="" />{countStatusDeactive}</span>
                   <div className="info-box-content">
                     <span className="info-box-text">Total Devices Non-Active</span>
                   </div>
@@ -67,14 +109,48 @@ const DashboardExample = () => {
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
-                  <span className="info-box-icon"><i className="" /></span>
+                  <span className="info-box-icon"><i className="" />{countValve}</span>
                   <div className="info-box-content">
-                    <span className="info-box-text">Total Deleted Device</span>
+                    <span className="info-box-text">Total Valve Open</span>
                   </div>
                 </div>
               </div>
-
-            </div>            
+            </div>  
+            <div className="row">
+              <div className="col-md-3 col-sm-6 col-12">
+                <div className="info-box bg-info">
+                  {/* <span className="info-box-icon"><i class="fa-solid fa-droplet"></i></span> */}
+                  <div className="info-box-content">
+                  <span className="info-box-text">Water Usage / Water Limit </span>
+                  <span class="info-box-number">{sumWaterUsage} / {sumWaterLimit}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3 col-sm-6 col-12">
+                <div className="info-box bg-info">
+                  <span className="info-box-icon"><i className="" /></span>
+                  <div className="info-box-content">
+                    <span className="info-box-text">Average ph</span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3 col-sm-6 col-12">
+                <div className="info-box bg-info">
+                  <span className="info-box-icon"><i className="" /></span>
+                  <div className="info-box-content">
+                    <span className="info-box-text">Average Temperature</span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3 col-sm-6 col-12">
+                <div className="info-box bg-info">
+                  <span className="info-box-icon"><i className="" /></span>
+                  <div className="info-box-content">
+                    <span className="info-box-text">Average Metal</span>
+                  </div>
+                </div>
+              </div>
+            </div>                        
             <div className="row">   
               <div className="col-md-12">
                 <div className="card">
@@ -96,8 +172,10 @@ const DashboardExample = () => {
                         <tr>
                           <th>#</th>
                           <th>Name</th>
-                          <th>Valve Status</th>
                           <th>Status</th>
+                          <th>Valve Status</th>
+                          <th>Water Usage</th>
+
                           <th></th>
                         </tr>
                       </thead>
@@ -108,7 +186,6 @@ const DashboardExample = () => {
                             return <tr key ={index}>
                               <td>{index + 1}</td>
                               <td>{monitoring.deviceName}</td>
-                              <td>{monitoring.valveStatus === true ? "Open" : "Closed"}</td>                              
                               <td>
                               {monitoring.status === true &&
                               <button className="btn btn-success btn-sm" disabled>
@@ -121,6 +198,8 @@ const DashboardExample = () => {
                               </button>
                               }
                               </td>
+                              <td>{monitoring.valveStatus === true ? "Open" : "Closed"}</td>                              
+                              <td>{monitoring.waterUsage} / {monitoring.waterLimit}</td>                              
 
                               <td>
                               <Link to="/DetailDevice"
