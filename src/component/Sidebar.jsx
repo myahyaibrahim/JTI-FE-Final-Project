@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const username = localStorage.getItem("username");
+
+  useEffect(() => {}, [username]);
 
   return (
     <div>
@@ -74,9 +76,9 @@ const Sidebar = () => {
 
               <li className="nav-header">SETTINGS</li>
               <li className="nav-item">
-                <NavLink to="/Setting" className="nav-link">
+                <NavLink to="/EditProfile" className="nav-link">
                   <i className="nav-icon far fa-plus-square" />
-                  <p>Setting</p>
+                  <p>Edit Profile</p>
                 </NavLink>
               </li>
             </ul>

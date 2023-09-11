@@ -47,7 +47,7 @@ function App() {
             <Route path="/MakeReport" element={<AddReport />} />
             <Route path="/MyReports" element={<MyReports />} />
             <Route path="/ReportDetail/:uuid" element={<ReportDetail />} />
-            <Route path="/Setting" element={<Setting />} />
+            <Route path="/EditProfile" element={<Setting />} />
           </Routes>
 
           <div
