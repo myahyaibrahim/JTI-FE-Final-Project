@@ -7,6 +7,11 @@ const DetailDevice = (props) => {
     const propsData = location.state;
     console.log(propsData);    
 
+    const badWater  
+    
+    if(){}
+
+
     return(
         <div className="content-wrapper">
           <div className="content-header">
@@ -21,6 +26,42 @@ const DetailDevice = (props) => {
                             <div className="col-lg-4 col-md-5 xs-margin-30px-bottom ">
                                 <div className="team-single-img">
                                     <img src="https://tankdoctor.com.au/wp-content/uploads/2021/10/Filtatank-Twin-filter-system-with-UV-clear-Housings-600x600.jpg" alt="" class="img-thumbnail"/>
+                                    { propsData.totalColiforms === 0 && 
+                        6.5 <= propsData.ph <= 8.5 &&
+                        propsData.turbidity <=5 &&
+                        10 <= propsData.temperature <= 25 && 
+                        propsData.color <= 15 && 
+                        propsData.totalDissolvedSolids <= 500 && 
+                        propsData.electricalConductivity <= 200 && 
+                        propsData.metal <= 0.3 &&
+                              <button className="btn btn-success btn-sm" >
+                                  Drinking Water
+                              </button>
+                        }
+                        { 0 > propsData.totalColiforms < 100 && 
+                        6 <= propsData.ph <= 9 &&
+//                      propsData.turbidity ==0 &&
+                        10 <= propsData.temperature <= 49 && 
+                        propsData.color <= 15 && 
+                        propsData.totalDissolvedSolids <= 500 && 
+                        propsData.electricalConductivity <= 200 && 
+//                      propsData.metal <= 0.3 &&
+                              <button className="btn btn-info btn-sm" >
+                                  Bath Waters
+                              </button>
+                        }
+                        { 100 < (propsData.totalColiforms <1000) ||
+                       ( 6 >= propsData.ph >= 8.5) ||
+//                        propsData.turbidity <=5 ||
+                        10 >= propsData.temperature >= 49 || 
+                        propsData.color > 15 || 
+                        propsData.totalDissolvedSolids >= 500 || 
+                        propsData.electricalConductivity <= 200 || 
+                        propsData.metal >= 0.3 ||
+                              <button className="btn btn-danger btn-sm" >
+                                  Bad
+                              </button>
+                        }                                
                                 </div>
                             </div>
 
@@ -200,42 +241,7 @@ const DetailDevice = (props) => {
 
                             </div>
                         </div>
-                        { propsData.totalColiforms === 0 && 
-                        6.5 <= propsData.ph <= 8.5 &&
-                        propsData.turbidity <=5 &&
-                        10 <= propsData.temperature <= 25 && 
-                        propsData.color <= 15 && 
-                        propsData.totalDissolvedSolids <= 500 && 
-                        propsData.electricalConductivity <= 200 && 
-                        propsData.metal <= 0.3 &&
-                              <button className="btn btn-success btn-sm" disabled>
-                                  Drinking Water
-                              </button>
-                        }
-                        { 0 > propsData.totalColiforms < 100 && 
-                        6 <= propsData.ph <= 9 &&
-//                      propsData.turbidity ==0 &&
-                        10 <= propsData.temperature <= 49 && 
-                        propsData.color <= 15 && 
-                        propsData.totalDissolvedSolids <= 500 && 
-                        propsData.electricalConductivity <= 200 && 
-//                      propsData.metal <= 0.3 &&
-                              <button className="btn btn-success btn-sm" disabled>
-                                  Bath Waters
-                              </button>
-                        }
-                        { 100 > propsData.totalColiforms <1000 && 
-                        6 >= propsData.ph >= 8.5 &&
-//                      propsData.turbidity <=5 &&
-                        10 <= propsData.temperature <= 49 && 
-                        propsData.color > 15 && 
-                        propsData.totalDissolvedSolids <= 500 && 
-                        propsData.electricalConductivity <= 200 && 
-                        propsData.metal <= 0.3 &&
-                              <button className="btn btn-success btn-sm" disabled>
-                                  Bad
-                              </button>
-                        }
+
 
                     </div>
                 </div>                

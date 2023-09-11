@@ -50,15 +50,22 @@ const DashboardExample = () => {
   }, 0);
 
   /////////////////////////////mean ph semua device///////////////////////////////////////
-  let meanPh = data.reduce(function(prev, current) {
-    
+  let sumPh = data.reduce(function(prev, current) {
     return prev + +current.ph 
   }, 0);
+  let meanPh = sumPh / data.length
 
-  console.log(meanPh)
   /////////////////////////////mean temperature semua device///////////////////////////////////////
+  let sumTemp = data.reduce(function(prev, current) {
+    return prev + +current.temperature
+  }, 0);
+  let meanTemp = sumTemp / data.length
 
   /////////////////////////////mean metal semua device///////////////////////////////////////
+  let sumMetal = data.reduce(function(prev, current) {
+    return prev + +current.metal 
+  }, 0);
+  let meanMetal = sumMetal / data.length
     
   return (
     <div>
@@ -128,15 +135,16 @@ const DashboardExample = () => {
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
-                  <span className="info-box-icon"><i className="" /></span>
+                  <span className="info-box-icon"><i className="" /> {meanPh}</span>
                   <div className="info-box-content">
-                    <span className="info-box-text">Average ph</span>
+                    <span className="info-box-text"> Average ph</span>
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
-                  <span className="info-box-icon"><i className="" /></span>
+                  <span className="info-box-icon"><i className="" />{meanTemp}</span>
+                  °C
                   <div className="info-box-content">
                     <span className="info-box-text">Average Temperature</span>
                   </div>
@@ -144,7 +152,8 @@ const DashboardExample = () => {
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 <div className="info-box bg-info">
-                  <span className="info-box-icon"><i className="" /></span>
+                  <span className="info-box-icon"><i className="" />{meanMetal} </span>
+                  mg/l
                   <div className="info-box-content">
                     <span className="info-box-text">Average Metal</span>
                   </div>
