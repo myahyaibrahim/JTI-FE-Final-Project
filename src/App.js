@@ -3,6 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { StatusContext } from "./StatusContext";
 
+import {
+  Context,
+  initialState,
+} from './store/Context'
+
+import Desktop from "./Desktop";
 import Header from "./component/Header";
 import Sidebar from "./component/Sidebar";
 import Footer from "./component/Footer";
@@ -38,6 +44,8 @@ function App() {
 
           <Routes>
             <Route path="/" element={<DashboardExample />} />
+            <Route path="/Context" element={<Context/>} />
+            <Route path="/HomePage" element={<Desktop/>} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/AddDevice" element={<AddDevice />} />
