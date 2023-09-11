@@ -43,7 +43,7 @@ const Sidebar = () => {
               <li className="nav-item">
                 <NavLink to="/" className="nav-link">
                   <i className="nav-icon fas fa-tachometer-alt" />
-                  <p>Dashboard Example</p>
+                  <p>Dashboard</p>
                 </NavLink>
               </li>
               <li className="nav-header">DEVICES</li>
