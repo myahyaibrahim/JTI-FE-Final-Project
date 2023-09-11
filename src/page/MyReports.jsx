@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
 import { api } from "../Configuration";
 import { Alert } from "reactstrap";
+import { Link, Navigate } from "react-router-dom";
+import moment from "moment/moment";
 
-function MyDevices() {
-  const [title] = useState("My Device");
+function MyReports() {
+  const [title] = useState("My Reports");
 
-  const [deviceList, setDeviceList] = useState([]);
+  const [reportList, setReportList] = useState([]);
 
   const [status, setStatus] = useState({
     display: "none",
@@ -21,57 +22,14 @@ function MyDevices() {
 
     // Fetch list of devices
     axios
-      .get(api + "/deviceList", {
+      .get(api + "/report", {
         withCredentials: true,
       })
       .then((res) => {
         console.log(res.data);
-        setDeviceList(res.data);
+        setReportList(res.data);
       });
   }, []);
-
-  const deleteDeviceButton = (event, deviceName, uuid) => {
-    event.preventDefault();
-    console.log("delete button");
-
-    console.log(deviceName);
-    console.log(uuid);
-
-    axios
-      .delete(api + "/monitor", {
-        data: {
-          uuid: uuid,
-          deviceName: deviceName,
-        },
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      })
-      .then((res) => {
-        if (res.request.status === 200) {
-          console.log(res);
-          setStatus({
-            display: "block",
-            type: "success",
-            message: res.data.msg,
-          });
-          // Remove the deleted device from the list
-          setDeviceList(
-            deviceList.filter(function (device) {
-              return device.uuid !== uuid && device.deviceName !== deviceName;
-            })
-          );
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        setStatus({
-          display: "block",
-          type: "danger",
-          message: err.response.data.msg,
-        });
-      });
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
 
   if (localStorage.getItem("uuid") === null) {
     return <Navigate to="/login" replace={true} />;
@@ -83,16 +41,17 @@ function MyDevices() {
           <div className="container-fluid">
             <div className="row mb-2">
               <div className="col-sm-6">
-                <h1>My Devices</h1>
+                <h1>My Reports</h1>
               </div>
               <div className="col-sm-6">
                 <ol className="breadcrumb float-sm-right">
                   <li className="breadcrumb-item">
-                    <a href="/MyDevice">My Devices</a>
+                    <a href="/MyReports">My Reports</a>
                   </li>
                 </ol>
               </div>
             </div>
+
             <Alert
               color={status.type}
               style={{ display: status.display, marginBottom: "0px" }}
@@ -119,13 +78,10 @@ function MyDevices() {
                             No
                           </th>
                           <th style={{ width: "30%", textAlign: "center" }}>
-                            Device name
+                            Report Title
                           </th>
                           <th style={{ width: "15%", textAlign: "center" }}>
-                            Device Status
-                          </th>
-                          <th style={{ width: "15%", textAlign: "center" }}>
-                            Valve Status
+                            Report Date
                           </th>
                           <th style={{ width: "30%", textAlign: "center" }}>
                             Action
@@ -133,7 +89,7 @@ function MyDevices() {
                         </tr>
                       </thead>
                       <tbody>
-                        {deviceList.map((curr, idx) => (
+                        {reportList.map((curr, idx) => (
                           <tr key={idx}>
                             {/* No */}
                             <td
@@ -144,31 +100,24 @@ function MyDevices() {
                             >
                               {idx + 1}.
                             </td>
-                            {/* Device name */}
+                            {/* Report title */}
                             <td
                               style={{
                                 verticalAlign: "middle",
                               }}
                             >
-                              {curr.deviceName}
+                              {curr.reportTitle}
                             </td>
-                            {/* Device status */}
+                            {/* Report Date */}
                             <td
                               style={{
-                                textAlign: "center",
                                 verticalAlign: "middle",
+                                textAlign: "center",
                               }}
                             >
-                              {curr.status === true ? "Active" : "Inactive"}
-                            </td>
-                            {/* Valve status */}
-                            <td
-                              style={{
-                                textAlign: "center",
-                                verticalAlign: "middle",
-                              }}
-                            >
-                              {curr.valveStatus === true ? "Open" : "Closed"}
+                              {moment(curr.reportDate)
+                                .utc()
+                                .format("YYYY-MM-DD")}
                             </td>
                             {/* Action column */}
                             <td>
@@ -180,32 +129,32 @@ function MyDevices() {
                                 }}
                               >
                                 <div style={{ margin: "0 3px" }}>
-                                  <Link to={`/EditDevice/${curr.uuid}`}>
+                                  <Link to={`/ReportDetail/${curr.uuid}`}>
                                     <button
                                       id_parameter={1}
                                       type="submit"
                                       className="btn btn-primary"
                                     >
-                                      <i className="fas fa-pencil-alt"></i> Edit
+                                      <i className="fas fa-eye"></i> See Details
                                     </button>
                                   </Link>
                                 </div>
-                                <div style={{ margin: "0 3px" }}>
-                                  <button
-                                    id_parameter={1}
-                                    type="submit"
-                                    className="btn btn-danger"
-                                    onClick={(event) =>
-                                      deleteDeviceButton(
-                                        event,
-                                        curr.deviceName,
-                                        curr.uuid
-                                      )
-                                    }
-                                  >
-                                    <i className="fas fa-trash"></i> Delete
-                                  </button>
-                                </div>
+                                {/* <div style={{ margin: "0 3px" }}>
+                                    <button
+                                      id_parameter={1}
+                                      type="submit"
+                                      className="btn btn-danger"
+                                      onClick={(event) =>
+                                        deleteDeviceButton(
+                                          event,
+                                          curr.deviceName,
+                                          curr.uuid
+                                        )
+                                      }
+                                    >
+                                      <i className="fas fa-trash"></i> Delete
+                                    </button>
+                                  </div> */}
                               </div>
                             </td>
                           </tr>
@@ -223,4 +172,4 @@ function MyDevices() {
   }
 }
 
-export default MyDevices;
+export default MyReports;
