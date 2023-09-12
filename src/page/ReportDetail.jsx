@@ -77,6 +77,9 @@ function ReportDetail() {
               <div className="col-sm-6">
                 <ol className="breadcrumb float-sm-right">
                   <li className="breadcrumb-item">
+                    <a href={"/MyReports"}>My Reports</a>
+                  </li>
+                  <li className="breadcrumb-item">
                     <a href={"/ReportDetail/" + params.uuid}>Report Detail</a>
                   </li>
                 </ol>

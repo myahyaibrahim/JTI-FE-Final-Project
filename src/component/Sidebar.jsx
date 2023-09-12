@@ -63,13 +63,13 @@ const Sidebar = () => {
               <li className="nav-header">REPORT</li>
               <li className="nav-item">
                 <NavLink to="/MakeReport" className="nav-link">
-                  <i className="nav-icon far fa-plus-square" />
+                  <i className="nav-icon far fa-clipboard" />
                   <p>Make a New Report</p>
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink to="/MyReports" className="nav-link">
-                  <i className="nav-icon fa fa-list" />
+                  <i className="nav-icon fa fa-archive" />
                   <p>My Reports</p>
                 </NavLink>
               </li>
@@ -77,7 +77,7 @@ const Sidebar = () => {
               <li className="nav-header">SETTINGS</li>
               <li className="nav-item">
                 <NavLink to="/EditProfile" className="nav-link">
-                  <i className="nav-icon far fa-plus-square" />
+                  <i className="nav-icon far fa fa-cogs" />
                   <p>Edit Profile</p>
                 </NavLink>
               </li>

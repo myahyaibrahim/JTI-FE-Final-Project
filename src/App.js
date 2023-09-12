@@ -17,6 +17,8 @@ import AddReport from "./page/AddReport";
 import MyReports from "./page/MyReports";
 import ReportDetail from "./page/ReportDetail";
 import Setting from "./page/Setting";
+import Desktop from "./page/Desktop";
+import { Context } from "./store/Context";
 
 function App() {
   const [statusValue, setStatusValue] = useState({
@@ -48,6 +50,8 @@ function App() {
             <Route path="/MyReports" element={<MyReports />} />
             <Route path="/ReportDetail/:uuid" element={<ReportDetail />} />
             <Route path="/EditProfile" element={<Setting />} />
+            <Route path="/Context" element={<Context />} />
+            <Route path="/HomePage" element={<Desktop />} />
           </Routes>
 
           <div
