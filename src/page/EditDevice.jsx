@@ -122,6 +122,9 @@ function EditDevice() {
               <div className="col-sm-6">
                 <ol className="breadcrumb float-sm-right">
                   <li className="breadcrumb-item">
+                    <a href={"/MyDevices"}>My Devices</a>
+                  </li>
+                  <li className="breadcrumb-item">
                     <a href={"/EditDevice/" + params.uuid}>Edit Device</a>
                   </li>
                 </ol>

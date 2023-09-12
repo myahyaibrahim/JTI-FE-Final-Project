@@ -349,7 +349,7 @@ function AddReport() {
               onClick={onAddReportButtonClicked}
               style={{ marginBottom: "10px" }}
             >
-              Add device
+              Add new report
             </button>
           </div>
         </section>

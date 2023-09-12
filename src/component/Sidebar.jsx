@@ -11,7 +11,7 @@ const Sidebar = () => {
       <aside className="main-sidebar sidebar-dark-primary elevation-4">
         <a href="index3.html" className="brand-link">
           <img
-            src="dist/img/AdminLTELogo.png"
+            src="dist/img/track_water.ico"
             alt="AdminLTE Logo"
             className="brand-image img-circle elevation-3"
             style={{ opacity: ".8" }}
@@ -63,13 +63,13 @@ const Sidebar = () => {
               <li className="nav-header">REPORT</li>
               <li className="nav-item">
                 <NavLink to="/MakeReport" className="nav-link">
-                  <i className="nav-icon far fa-plus-square" />
+                  <i className="nav-icon far fa-clipboard" />
                   <p>Make a New Report</p>
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink to="/MyReports" className="nav-link">
-                  <i className="nav-icon fa fa-list" />
+                  <i className="nav-icon fa fa-archive" />
                   <p>My Reports</p>
                 </NavLink>
               </li>
@@ -77,7 +77,7 @@ const Sidebar = () => {
               <li className="nav-header">SETTINGS</li>
               <li className="nav-item">
                 <NavLink to="/EditProfile" className="nav-link">
-                  <i className="nav-icon far fa-plus-square" />
+                  <i className="nav-icon far fa fa-cogs" />
                   <p>Edit Profile</p>
                 </NavLink>
               </li>

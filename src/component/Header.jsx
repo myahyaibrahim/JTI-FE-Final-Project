@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StatusContext } from "../StatusContext";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Alert } from "reactstrap";
 import { api } from "../Configuration";
 
 const Header = () => {
-
   const navigate = useNavigate();
   const valueContext = useContext(StatusContext);
 
@@ -14,13 +13,11 @@ const Header = () => {
     display: "none",
     type: "",
     message: "",
-  });  
-
+  });
 
   const onLogoutButtonClicked = (event) => {
     event.preventDefault();
 
-    
     axios
       .delete(api + "/logout")
       .then((res) => {
@@ -188,9 +185,12 @@ const Header = () => {
             </div>
           </li>
           {/* Logout */}
-            <a className="nav-link" data-toggle="" href="">
-              <i className="fas fa-sign-out-alt" onClick={onLogoutButtonClicked}/>
-            </a>
+          <a className="nav-link" data-toggle="" href="">
+            <i
+              className="fas fa-sign-out-alt"
+              onClick={onLogoutButtonClicked}
+            />
+          </a>
           {/* Full screen toggle */}
           <li className="nav-item">
             <a
