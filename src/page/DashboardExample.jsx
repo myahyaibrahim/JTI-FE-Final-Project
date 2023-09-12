@@ -56,19 +56,19 @@ const DashboardExample = () => {
   let sumPh = data.reduce(function (prev, current) {
     return prev + +current.ph;
   }, 0);
-  let meanPh = sumPh / data.length;
+  let meanPh = (sumPh / data.length).toFixed(1);
 
   /////////////////////////////mean temperature semua device///////////////////////////////////////
   let sumTemp = data.reduce(function (prev, current) {
     return prev + +current.temperature;
   }, 0);
-  let meanTemp = sumTemp / data.length;
+  let meanTemp = (sumTemp / data.length).toFixed(1);
 
   /////////////////////////////mean metal semua device///////////////////////////////////////
   let sumMetal = data.reduce(function (prev, current) {
     return prev + +current.metal;
   }, 0);
-  let meanMetal = sumMetal / data.length;
+  let meanMetal = (sumMetal / data.length).toFixed(1);
 
   if (localStorage.getItem("uuid") === null) {
     return <Navigate to="/login" replace={true} />;

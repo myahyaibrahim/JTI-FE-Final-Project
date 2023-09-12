@@ -350,18 +350,20 @@ function Desktop() {
                   style={{ marginTop: "125px" }}
                 >
                   <Col>
-                    <Button
-                      type="primary"
-                      shape="round"
-                      icon=""
-                      size="large"
-                      danger
-                      onClick={() => {
-                        window.scrollTo(0, 0);
-                      }}
-                    >
-                      Up
-                    </Button>
+                    <Link to={`/register`}>
+                      <Button
+                        type="primary"
+                        shape="round"
+                        icon=""
+                        size="large"
+                        danger
+                        onClick={() => {
+                          window.scrollTo(0, 0);
+                        }}
+                      >
+                        Register a new account
+                      </Button>
+                    </Link>
                   </Col>
                 </Row>
               </Col>
